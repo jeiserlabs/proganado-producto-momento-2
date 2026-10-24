@@ -1062,22 +1062,36 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-4">
-          <p class="small text-muted mb-4">
-            Ingreso al sistema de trazabilidad de <strong>Finca La Pradera</strong>. Para la demostración académica del Momento 2, los accesos se encuentran autenticados en el frontend.
-          </p>
+          <div class="alert alert-success py-2 px-3 small rounded-3 d-flex align-items-center gap-2 mb-3">
+            <i class="bi bi-unlock-fill fs-5 text-success"></i>
+            <div>
+              <strong>Acceso Libre y Abierto (Modo Demostración):</strong> Puedes ingresar con cualquier usuario y contraseña, o dejarlos vacíos. No restringe el acceso al evaluador.
+            </div>
+          </div>
+
+          <!-- Token JWT Universal de Demostración -->
+          <div class="bg-light p-2 rounded-2 border mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <span class="text-muted fs-8 fw-semibold"><i class="bi bi-shield-lock-fill text-warning me-1"></i>Token JWT Universal (Demo):</span>
+              <span class="badge bg-success-subtle text-success border border-success-subtle fs-8">Válido 24h</span>
+            </div>
+            <code class="d-block text-break fs-8 text-secondary font-monospace" style="user-select: all;">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZXZhbHVhZG9yX2Nlc2RlIiwicm9sZSI6IkFkbWluIiwiZmluY2EiOiJMYV9QcmFkZXJhIn0.proganado_m2_universal_jwt_signature</code>
+          </div>
+
           <form onsubmit="event.preventDefault();">
             <div class="mb-3">
-              <label for="inputCorreoLogin" class="form-label small fw-semibold text-dark">Correo Electrónico (Usuario)</label>
+              <label for="inputCorreoLogin" class="form-label small fw-semibold text-dark">Usuario o Correo Electrónico</label>
               <div class="input-group">
-                <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
-                <input type="email" class="form-control" id="inputCorreoLogin" value="operaciones@proganado.com" readonly />
+                <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                <input type="text" class="form-control" id="inputCorreoLogin" placeholder="Escribe cualquier nombre o correo (ej: profesor@cesde.edu.co)" />
               </div>
+              <div class="form-text fs-8">Campo abierto: no requiere validación estricta en el servidor.</div>
             </div>
             <div class="mb-3">
               <label for="inputPassLogin" class="form-label small fw-semibold text-dark">Contraseña</label>
               <div class="input-group">
-                <span class="input-group-text bg-light"><i class="bi bi-shield-lock"></i></span>
-                <input type="password" class="form-control" id="inputPassLogin" value="••••••••••••" readonly />
+                <span class="input-group-text bg-light"><i class="bi bi-key"></i></span>
+                <input type="password" class="form-control" id="inputPassLogin" placeholder="Cualquier contraseña o en blanco" />
               </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4 small">
@@ -1085,11 +1099,11 @@
                 <input class="form-check-input" type="checkbox" id="checkRecordarLogin" checked />
                 <label class="form-check-label text-muted" for="checkRecordarLogin">Mantener sesión activa</label>
               </div>
-              <span class="badge bg-success-subtle text-success border border-success-subtle">Rol: Administrador</span>
+              <span class="badge bg-success-subtle text-success border border-success-subtle">Rol: Administrador Hato</span>
             </div>
             <div class="d-grid gap-2">
               <button type="button" class="btn btn-success py-2 shadow-sm fw-semibold" data-bs-dismiss="modal">
-                <i class="bi bi-check-circle me-1"></i>Ingresar al Panel de Control
+                <i class="bi bi-box-arrow-in-right me-1"></i>Ingresar como Evaluador / Administrador
               </button>
             </div>
           </form>

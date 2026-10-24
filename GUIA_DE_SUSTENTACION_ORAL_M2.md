@@ -55,6 +55,11 @@
 - *"El frontend está alojado en la nube en **GitHub Pages** en la URL pública `https://jeiserlabs.github.io/proganado-producto-momento-2/`."*
 - *"Cada vez que hacemos `git push origin main`, GitHub dispara automáticamente un runner de CI/CD que compila y publica los cambios en vivo en 60 a 90 segundos. El docente o cualquier evaluador puede abrir el enlace desde su celular sin tener que descargar archivos ZIP ni instalar servidores locales."*
 
+### Pregunta 7: *"¿Cómo funciona el Login y por qué no exige una contraseña fija?"*
+**Tu respuesta:**
+- *"Porque para el Momento 2 se evalúa exclusivamente la capa de diseño y maquetación web (Frontend). No tenemos un servidor backend activo validando credenciales en una base de datos."*
+- *"Para que la entrega no tenga datos bloqueados ni falle si el docente escribe cualquier correo, implementamos un **Acceso Ganadero Abierto** con un **Token JWT Universal** demo. Cualquier persona puede escribir su correo, su nombre o dejarlo en blanco, y el sistema le da entrada directa con rol de Administrador."*
+
 ---
 
 ## 🎬 3. Guion de Demostración Práctica (Haz esto frente al profe)
