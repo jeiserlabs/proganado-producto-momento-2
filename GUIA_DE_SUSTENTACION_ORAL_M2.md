@@ -64,23 +64,26 @@
 
 ## 🎬 3. Guion de Demostración Práctica (Haz esto frente al profe)
 
-1. **Abre el enlace de GitHub Pages en el navegador (o `index.html`).**
-2. **Muestra el Hero y haz scroll:** Muéstrale cómo el Navbar se queda fijo arriba (`.sticky-top`).
-3. **Muestra el Panel de Inicio Operativo:**
-   - Señálale las 3 columnas principales:
+1. **Abre el enlace de GitHub Pages en el navegador (carga `index.html`).**
+2. **Muestra la Pantalla de Inicio de Sesión (Login Gate):**
+   - Señálale al profesor el diseño split-screen en Bootstrap 5, la foto del hato y el **Token JWT Universal Demo**.
+   - Explícale: *"Profesor, diseñamos una puerta de acceso abierta: cualquiera puede ingresar con cualquier usuario o contraseña, o entrar directamente con el botón de acceso sin bloqueos."*
+3. **Haz clic en "Ingresar al Dashboard Operativo →":**
+   - El enlace navega de forma nativa a `dashboard.html`.
+4. **Muestra el Panel de Inicio Operativo:**
+   - Señálale las 3 columnas:
      - **Agenda Sanitaria:** Alerta de fin de retiro de antibiótico (Vaca 0102) y ciclo de vacunación antiaftosa (ICA).
      - **Composición del Hato:** Barras de progreso de Bootstrap (`.progress-bar`) con vacas en ordeño, horras secas y novillas.
      - **Acopio Colanta:** Registro del tanque frío a 4.0°C, 480 litros entregados y prueba de inocuidad aprobada.
-4. **Presiona F12 (Modo Inspeccionar / Móvil):**
+5. **Presiona F12 (Modo Inspeccionar / Móvil):**
    - Achica la ventana para que vea cómo pasa a 1 columna fluido.
    - Haz clic en el botón hamburguesa para que vea abrir y cerrar el menú de navegación.
-5. **Prueba los Modales Nativos:**
-   - Haz clic en el botón **"Acceso"** para mostrar el modal de inicio de sesión con inputs y checkbox estilizados.
+6. **Prueba los Modales Nativos:**
    - Haz clic en el botón verde **"+ Registrar Bovino"** para mostrar los inputs de formulario (`form-control`, `form-select`). Cierra con Cancelar para ver cómo `data-bs-dismiss="modal"` lo oculta limpiamente.
-6. **Muestra el botón "Ver Ficha" (el icono del ojo en la tabla):**
+7. **Muestra el botón "Ver Ficha" (el icono del ojo en la tabla):**
    - Ábrelo para mostrar la foto zootécnica y la genealogía ampliada de Mariposa.
-7. **Muestra la sección de Sanidad ICA:**
-   - Explícale la alerta roja: *"Aquí garantizamos que si una vaca tiene antibiótico (como Estrella COL-1601), el sistema marca 'NO APTO' para proteger el acopio de Colanta según la resolución sanitaria del ICA."*
+8. **Prueba el botón "Cerrar Sesión":**
+   - Haz clic en el botón superior **"Cerrar Sesión"** para mostrar cómo el sistema regresa limpiamente a `index.html`.
 
 ---
 

@@ -23,9 +23,10 @@
 ## 📌 Descripción del Entregable
 
 Este repositorio contiene la entrega oficial del **Producto del Momento 2** para el Proyecto Integrador **ProGanado S.A.S.**:
-- Maquetación web 100% responsiva desarrollada exclusivamente con **HTML5 Semántico y el framework Bootstrap 5.3.3**.
-- **Panel de Inicio Operativo:** Tablero ejecutivo con agenda sanitaria de tratamientos ICA, barras de progreso con la composición del hato y métricas de acopio lechero con Colanta.
-- **CERO líneas de JavaScript propio:** Toda la interactividad (ventanas modales de registro/login/detalle, carrusel animado y menú colapsable en dispositivos móviles) funciona de forma nativa a través de los atributos oficiales de Bootstrap (`data-bs-toggle="modal"`, `data-bs-target`, `data-bs-ride="carousel"`), garantizando estricto apego al contenido visto en clase.
+- **Arquitectura de Dos Vistas (Multi-página HTML5):**
+  1. `index.html`: **Pantalla de Inicio de Sesión (Login Gate)** con diseño split-screen en Bootstrap 5, contexto ganadero, formulario abierto y **Token JWT Universal demo**.
+  2. `dashboard.html`: **Panel de Control Operativo Completo** con Navbar sticky, resumen de agenda sanitaria, composición del hato con barras de progreso, acopio Colanta, tabla de inventario, carrusel y modales nativos.
+- **CERO líneas de JavaScript propio:** Toda la interactividad (navegación multipágina, modales de registro/detalle, carrusel animado y menú colapsable en móviles) funciona de forma 100% nativa con etiquetas HTML e hipervínculos estándar y los atributos oficiales de Bootstrap (`data-bs-toggle="modal"`, `data-bs-target`, `data-bs-ride="carousel"`), garantizando estricto apego al contenido visto en clase.
 
 ---
 
