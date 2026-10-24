@@ -38,54 +38,53 @@
 **Tu respuesta:**
 - *"Usamos los data attributes nativos de HTML de Bootstrap: `data-bs-toggle='modal'` y `data-bs-target='#modalRegistroBovino'`. Bootstrap se encarga del fondo oscuro y la animación `.fade`. Para cerrarlo usamos `data-bs-dismiss='modal'`, 100% nativo sin necesidad de programar JavaScript."*
 
-### Pregunta 4: *"¿De dónde salen los datos de la tabla y cómo funcionan los filtros?"*
+### Pregunta 4: *"¿Cómo está estructurada la tabla de vacas y por qué no tiene JavaScript?"*
 **Tu respuesta:**
-- *"Los datos parten de un arreglo de objetos JavaScript (`hatoData`) que simula la respuesta de nuestra base de datos SQL (`Bovinos`)."*
-- *"La función `renderTabla()` recorre el arreglo con un `.forEach()` e inyecta dinámicamente las etiquetas `<tr>` y `<td>` con las clases de Bootstrap (`.table-hover`, `.table-striped`, `.badge`)."*
-- *"Para los filtros, escuchamos el evento `input` en la barra de búsqueda y el evento `change` en el selector de estados, aplicando el método `.filter()` de JavaScript para comparar texto con `.includes()` en minúsculas. Así la tabla se filtra en tiempo real sin pestañear."*
+- *"La tabla está construida estrictamente en HTML5 Semántico usando las clases oficiales de Bootstrap `.table`, `.table-hover`, `.table-striped` y `.badge` para los estados de sanidad e inocuidad."*
+- *"Como en la materia aún no hemos visto JavaScript, no quisimos meter código que no estuviera avalado en el plan docente. Cada fila representa un registro real de nuestro hato, mapeando exactamente las columnas de nuestra base de datos relacional de SQL Server (`Bovinos`, `Razas`, `Potreros`)."*
 
 ### Pregunta 5: *"¿Cómo se conecta esta interfaz con las otras materias (Bases de Datos y Lógica)?"*
 **Tu respuesta:**
 - *"Este es el corazón del Proyecto Integrador:*
   1. *En **Bases de Datos**: Los campos que pedimos en el modal (Arete, Raza, Estado, Potrero, Retiro ICA, Litros) corresponden exactamente a las columnas de nuestras tablas `Bovinos`, `Razas`, `Potreros` y `PesajesLeche` en SQL Server.*
-  2. *En **Lógica de Programación**: Las validaciones de si el animal está en retiro ICA para suspender la entrega a Colanta representan la estructura condicional (`SI retiroIca == VERDADERO ENTONCES leche = 0`) que modelamos en los algoritmos.*
+  2. *En **Lógica de Programación**: Las validaciones de si el animal está en retiro ICA para suspender la entrega a Colanta representan la estructura condicional (`SI retiroIca == VERDADERO ENTONCES leche = 0`) que modelamos en los algoritmos PSeInt.*
   3. *En **Intro a la Programación**: Demostramos maquetación profesional y responsive design con Bootstrap 5."*
+
+### Pregunta 6: *"¿Dónde está alojado el frontend y qué pasa cuando actualizan el código en GitHub?"*
+**Tu respuesta:**
+- *"El frontend está alojado en la nube en **GitHub Pages** en la URL pública `https://jeiserlabs.github.io/proganado-producto-momento-2/`."*
+- *"Cada vez que hacemos `git push origin main`, GitHub dispara automáticamente un runner de CI/CD que compila y publica los cambios en vivo en 60 a 90 segundos. El docente o cualquier evaluador puede abrir el enlace desde su celular sin tener que descargar archivos ZIP ni instalar servidores locales."*
 
 ---
 
 ## 🎬 3. Guion de Demostración Práctica (Haz esto frente al profe)
 
-1. **Abre `index.html` en el navegador.**
+1. **Abre el enlace de GitHub Pages en el navegador (o `index.html`).**
 2. **Muestra el Hero y haz scroll:** Muéstrale cómo el Navbar se queda fijo arriba (`.sticky-top`).
-3. **Presiona F12 (Modo Inspeccionar / Móvil):**
+3. **Muestra el Panel de Inicio Operativo:**
+   - Señálale las 3 columnas principales:
+     - **Agenda Sanitaria:** Alerta de fin de retiro de antibiótico (Vaca 0102) y ciclo de vacunación antiaftosa (ICA).
+     - **Composición del Hato:** Barras de progreso de Bootstrap (`.progress-bar`) con vacas en ordeño, horras secas y novillas.
+     - **Acopio Colanta:** Registro del tanque frío a 4.0°C, 480 litros entregados y prueba de inocuidad aprobada.
+4. **Presiona F12 (Modo Inspeccionar / Móvil):**
    - Achica la ventana para que vea cómo pasa a 1 columna fluido.
-   - Haz clic en el botón hamburguesa para que vea abrir y cerrar el menú.
-4. **Haz una prueba en vivo de Registro de Bovino:**
-   - Haz clic en el botón verde **"+ Registrar Bovino"**.
-   - Ingresa:
-     - Arete: `COL-999`
-     - Nombre: `Reina`
-     - Raza: `Jersey`
-     - Estado: `En Ordeño`
-     - Litros: `26`
-   - Haz clic en **"Guardar Bovino"**.
-   - Señálale al profe:
-     - *"Mire profe: el modal se cerró solo, apareció el Toast de notificación abajo a la derecha, la tabla subió a 9 vacas y la métrica de 'Total Bovinos' arriba cambió automáticamente de 8 a 9 en tiempo real."*
-5. **Prueba el buscador:**
-   - Escribe en la barra de búsqueda: `Reina`.
-   - La tabla se filtra al instante mostrando solo esa fila.
-6. **Muestra el botón "Ver Ficha" (el icono del ojo):**
-   - Ábrelo para mostrar la foto y la genealogía ampliada en el modal.
+   - Haz clic en el botón hamburguesa para que vea abrir y cerrar el menú de navegación.
+5. **Prueba los Modales Nativos:**
+   - Haz clic en el botón **"Acceso"** para mostrar el modal de inicio de sesión con inputs y checkbox estilizados.
+   - Haz clic en el botón verde **"+ Registrar Bovino"** para mostrar los inputs de formulario (`form-control`, `form-select`). Cierra con Cancelar para ver cómo `data-bs-dismiss="modal"` lo oculta limpiamente.
+6. **Muestra el botón "Ver Ficha" (el icono del ojo en la tabla):**
+   - Ábrelo para mostrar la foto zootécnica y la genealogía ampliada de Mariposa.
 7. **Muestra la sección de Sanidad ICA:**
-   - Explícale la alerta roja: *"Aquí garantizamos que si una vaca tiene antibiótico (como Estrella COL-1601), el sistema marca 'NO APTO' para proteger el acopio de Colanta según la resolución del ICA."*
+   - Explícale la alerta roja: *"Aquí garantizamos que si una vaca tiene antibiótico (como Estrella COL-1601), el sistema marca 'NO APTO' para proteger el acopio de Colanta según la resolución sanitaria del ICA."*
 
 ---
 
 ## 🏆 Veredicto para la Nota:
 Con esta sustentación demuestras:
-1. Dominio de HTML5 semántico.
-2. Dominio del framework Bootstrap 5 (CSS, JS, Grid, Componentes).
-3. Dominio de manipulación del DOM con JavaScript.
-4. Coherencia total con el Proyecto Integrador de la carrera.
+1. Dominio de HTML5 semántico puro (sin sopa de divs).
+2. Dominio del framework Bootstrap 5 (Grid System 12 columnas, Cards, Modales, Carrusel, Navbar, Progress bars).
+3. Apego estricto al temario visto en clase (0 JavaScript ajeno o no enseñado).
+4. Coherencia total con el Proyecto Integrador de la carrera (Bases de Datos + Lógica + Web).
+5. Despliegue en la nube con CI/CD automático en GitHub Pages.
 
 **Nota esperada:** **5.0 / 5.0**.
