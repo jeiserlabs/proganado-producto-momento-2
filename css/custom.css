@@ -1,0 +1,194 @@
+/* ==========================================================================
+   PROGANADO S.A.S. — ESTILOS COMPLEMENTARIOS PARA BOOTSTRAP 5
+   Proyecto Integrador CESDE 2026 | Arquitectura de UI Premium & Responsiva
+   ========================================================================== */
+
+:root {
+  --pg-primary: #198754;
+  --pg-primary-dark: #0f5132;
+  --pg-primary-light: #d1e7dd;
+  --pg-accent: #ffc107;
+  --pg-dark-emerald: #0b291b;
+  --pg-surface: #f8fbf9;
+  --pg-card-bg: #ffffff;
+  --pg-border-color: #e2ece6;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--pg-surface);
+  color: #2b3b32;
+  line-height: 1.6;
+}
+
+/* Navbar Personalizada */
+.bg-dark-emerald {
+  background-color: var(--pg-dark-emerald) !important;
+  border-bottom: 2px solid #1f5038;
+}
+
+.navbar-brand img {
+  height: 42px;
+  object-fit: contain;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #75b798 !important;
+}
+
+/* Hero Section */
+.hero-wrapper {
+  background: linear-gradient(135deg, rgba(11, 41, 27, 0.96) 0%, rgba(15, 81, 50, 0.90) 100%), 
+              url('../assets/hero-optimized.jpg') center/cover no-repeat;
+  color: #ffffff;
+  padding: 4.5rem 0 3.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-img-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.hero-img-card:hover {
+  transform: translateY(-4px);
+}
+
+.floating-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(11, 41, 27, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 12px 18px;
+  color: #ffffff;
+}
+
+/* Tarjetas de Métricas (Bento Grid) */
+.metric-card {
+  background: var(--pg-card-bg);
+  border: 1px solid var(--pg-border-color);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(25, 135, 84, 0.12);
+  border-color: #a3cfbb;
+}
+
+.metric-icon-wrap {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+/* Tablas Estilizadas */
+.table-proganado {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--pg-border-color);
+}
+
+.table-proganado thead th {
+  background-color: #f1f8f4;
+  color: #1a4d34;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1rem 0.75rem;
+  border-bottom: 2px solid #cfe2d8;
+}
+
+.table-proganado tbody td {
+  padding: 0.9rem 0.75rem;
+  vertical-align: middle;
+}
+
+.cow-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #dee2e6;
+}
+
+/* Carrusel Visual */
+.carousel-item img {
+  height: 380px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.carousel-caption {
+  background: rgba(11, 41, 27, 0.75);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  bottom: 24px;
+}
+
+/* Potreros Voisin PRV */
+.potrero-card {
+  border-radius: 14px;
+  border: 1px solid var(--pg-border-color);
+  background: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.potrero-card:hover {
+  border-color: var(--pg-primary);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.progress-thin {
+  height: 8px;
+  border-radius: 4px;
+}
+
+/* Modales */
+.modal-header.bg-dark-emerald {
+  color: #ffffff;
+}
+
+.modal-header .btn-close-white {
+  filter: invert(1);
+}
+
+/* Toast flotante */
+.toast-container-custom {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1090;
+}
