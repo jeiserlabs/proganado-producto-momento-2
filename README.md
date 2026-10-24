@@ -6,7 +6,9 @@
 **Docente:** Jonathan Felipe Piedrahita Nieto  
 **Estudiantes Desarrolladores:**
 - Jeiser Abraham Gutiérrez Torres (`@jeiserlabs`)
-- Edwin Alexander Villas
+- Sebastián Correa
+- Humberto Pinto
+- Emilio Villanueva
 
 ---
 

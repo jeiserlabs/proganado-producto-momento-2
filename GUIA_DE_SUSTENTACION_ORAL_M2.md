@@ -1,7 +1,7 @@
 # 🎓 GUÍA DE SUSTENTACIÓN ORAL — PRODUCTO MOMENTO 2
 **Materia:** Introducción a la Programación / Diseño Web (CESDE)  
 **Proyecto:** ProGanado S.A.S. · Versión Bootstrap 5  
-**Estudiante expositor:** Jeiser Abraham Gutiérrez Torres & Edwin Villas  
+**Equipo de Desarrollo:** Jeiser Abraham Gutiérrez Torres, Sebastián Correa, Humberto Pinto, Emilio Villanueva  
 **Docente:** Jonathan Felipe Piedrahita Nieto | **Aula 406**
 
 ---

@@ -1,6 +1,6 @@
 # PROGANADO S.A.S. — PRODUCTO MOMENTO 2 (CESDE 2026-2)
 **Materia:** Introducción a la Programación / Diseño Web  
-**Estudiantes:** Jeiser Abraham Gutiérrez Torres & Edwin Alexander Villas  
+**Estudiantes:** Jeiser Abraham Gutiérrez Torres, Sebastián Correa, Humberto Pinto, Emilio Villanueva  
 **Docente:** Jonathan Felipe Piedrahita Nieto | **Aula 406**
 
 ---
