@@ -6,9 +6,19 @@
 
 ---
 
+> [!IMPORTANT]
+> ### 🚨 RECORDATORIO CLAVE: ¿BOOTSTRAP SE ESCRIBE EN EL CSS O EN EL HTML?
+> **LA RESPUESTA DEFINITIVA:** Bootstrap **NO** se escribe dentro de tu archivo CSS. Se invoca directamente en las etiquetas de tu **HTML** usando el atributo `class="..."`.
+> - **1. ¿Qué es Bootstrap?** Es una librería con miles de estilos CSS ya programados (botones, tablas, tarjetas, grid).
+> - **2. ¿Cómo se instala?** En tu `index.html`, adentro del `<head>`, pegas el `<link rel="stylesheet" href="...bootstrap.min.css">`.
+> - **3. ¿Cómo se ejecuta / utiliza?** En tus etiquetas HTML le pones la clase: `<button class="btn btn-success">Guardar</button>`. ¡No tienes que escribir CSS!
+> - **4. ¿Para qué sirve tu archivo CSS propio (`custom.css`)?** Solo para detalles que Bootstrap no trae (como el color verde corporativo de ProGanado `#0b291b`). El 95% del diseño se hace en el HTML llamando a Bootstrap.
+
+---
+
 ## ⚡ 1. Discurso de Apertura (30 Segundos para Romper el Hielo)
 
-> *"Profesor Jonathan, para el Producto del Momento 2 migramos nuestro proyecto integrador **ProGanado** al framework **Bootstrap 5.3**, cumpliendo todos los temas vistos en clase: sistema de rejilla de 12 columnas, componentes interactivos oficiales (Navbar colapsable, Cards en Bento Grid, Carrusel, Modales, Tablas y Formularios), y vinculamos JavaScript puro para el manejo del DOM y filtros en vivo. La página es 100% responsiva y ataca el problema real de la inocuidad lechera (normativa ICA) y la trazabilidad del hato."*
+> *"Profesor Jonathan, para el Producto del Momento 2 migramos nuestro proyecto integrador **ProGanado** al framework **Bootstrap 5.3**, cumpliendo todos los temas vistos en clase: sistema de rejilla de 12 columnas, componentes interactivos oficiales (Navbar colapsable, Cards en Bento Grid, Carrusel, Modales, Tablas y Formularios). Como en clase todavía **no hemos visto JavaScript**, toda la interactividad funciona de forma nativa con los atributos oficiales de HTML de Bootstrap (`data-bs-toggle="modal"`, `data-bs-ride="carousel"`), garantizando un diseño limpio y 100% responsivo."*
 
 ---
 
@@ -26,7 +36,7 @@
 
 ### Pregunta 3: *"¿Cómo abren los modales (emergentes) sin recargar la página?"*
 **Tu respuesta:**
-- *"Usamos los data attributes nativos de Bootstrap: `data-bs-toggle='modal'` y `data-bs-target='#modalRegistroBovino'`. Bootstrap se encarga de calcular el z-index, el backdrop oscuro semitransparente y la animación `.fade`. Adicionalmente, en `js/app.js` usamos la API de JavaScript `bootstrap.Modal.getInstance()` para cerrar el modal automáticamente por código apenas el usuario presiona 'Guardar Bovino'."*
+- *"Usamos los data attributes nativos de HTML de Bootstrap: `data-bs-toggle='modal'` y `data-bs-target='#modalRegistroBovino'`. Bootstrap se encarga del fondo oscuro y la animación `.fade`. Para cerrarlo usamos `data-bs-dismiss='modal'`, 100% nativo sin necesidad de programar JavaScript."*
 
 ### Pregunta 4: *"¿De dónde salen los datos de la tabla y cómo funcionan los filtros?"*
 **Tu respuesta:**
