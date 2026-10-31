@@ -7,7 +7,7 @@
 **Estudiantes Desarrolladores:**
 - Jeiser Abraham Gutiérrez Torres (`@jeiserlabs`)
 - Sebastián Correa
-- Humberto Pinto
+- Héctor Pinto
 - Emilio Villanueva
 
 ---

@@ -1,6 +1,6 @@
 # PROGANADO S.A.S. — PRODUCTO MOMENTO 2 (CESDE 2026-2)
 **Materia:** Introducción a la Programación / Diseño Web  
-**Estudiantes:** Jeiser Abraham Gutiérrez Torres, Sebastián Correa, Humberto Pinto, Emilio Villanueva  
+**Estudiantes:** Jeiser Abraham Gutiérrez Torres, Sebastián Correa, Héctor Pinto, Emilio Villanueva  
 **Docente:** Jonathan Felipe Piedrahita Nieto | **Aula 406**
 
 ---
@@ -17,8 +17,8 @@ Este entregable implementa la capa visual y de interacción del Proyecto Integra
 - **Navbar Responsive:** Barra de navegación fija superior (`.navbar .navbar-expand-lg .sticky-top`) con menú hamburguesa colapsable (`.navbar-toggler`).
 - **Hero Banner:** Sección de impacto visual con tipografía escalada (`.display-5`, `.lead`), insignias (`.badge`) y botones de llamada a la acción (`.btn .btn-success`).
 - **Tarjetas Bento Grid (Métricas):** 4 tarjetas informativas (`.card`) para control zootécnico: Total Bovinos, Vacas en Gestación, Alerta de Retiro Sanitario ICA y Litros de Leche.
-- **Carrusel Fotográfico:** Deslizador animado con desvanecimiento (`.carousel .slide .carousel-fade`) con indicadores y controles para mostrar la operación real en campo.
-- **Tablas Responsivas:** Tabla con estilo interactivo (`.table .table-hover .table-striped .table-responsive`) con miniaturas de fotos reales de ganado.
+- **Carrusel Fotográfico:** Deslizador animado con desvanecimiento (`.carousel .slide .carousel-fade`) con indicadores y controles para mostrar la operación de campo.
+- **Tablas Responsivas:** Tabla con estilo interactivo (`.table .table-hover .table-striped .table-responsive`) con miniaturas de fotos de campo.
 - **Formularios Estructurados:** Formulario en modal con controles Bootstrap (`.form-label`, `.form-control`, `.form-select`, `.input-group`, `.form-check-input`).
 - **Modales de Bootstrap:** 
   1. `#modalRegistroBovino`: Modal interactivo para dar de alta un animal en vivo.
@@ -27,7 +27,7 @@ Este entregable implementa la capa visual y de interacción del Proyecto Integra
 - **Toast Notifications:** Mensaje flotante animado (`.toast`) que confirma el alta y eliminación de registros sin recargar la página.
 
 ### 3. Interoperabilidad Zootécnica y Reglas de Negocio
-- **Inocuidad ICA (Resolución 067449):** Detección visual automática de leche no apta para entrega a Colanta si el bovino está en período de retiro por antibióticos.
+- **Inocuidad ICA (normativa ICA aplicable):** Detección visual automática de leche no apta para entrega a Colanta si el bovino está en período de retiro por antibióticos.
 - **Pastoreo Racional Voisin (PRV):** Panel de estado de potreros con barras de progreso (`.progress .progress-bar`) que monitorean días de ocupación y descanso de pastura.
 
 ---

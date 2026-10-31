@@ -1,7 +1,7 @@
 # 🎓 GUÍA DE SUSTENTACIÓN ORAL — PRODUCTO MOMENTO 2
 **Materia:** Introducción a la Programación / Diseño Web (CESDE)  
 **Proyecto:** ProGanado S.A.S. · Versión Bootstrap 5  
-**Equipo de Desarrollo:** Jeiser Abraham Gutiérrez Torres, Sebastián Correa, Humberto Pinto, Emilio Villanueva  
+**Equipo de Desarrollo:** Jeiser Abraham Gutiérrez Torres, Sebastián Correa, Héctor Pinto, Emilio Villanueva  
 **Docente:** Jonathan Felipe Piedrahita Nieto | **Aula 406**
 
 ---
@@ -18,7 +18,7 @@
 
 ## ⚡ 1. Discurso de Apertura (30 Segundos para Romper el Hielo)
 
-> *"Profesor Jonathan, para el Producto del Momento 2 migramos nuestro proyecto integrador **ProGanado** al framework **Bootstrap 5.3**, cumpliendo todos los temas vistos en clase: sistema de rejilla de 12 columnas, componentes interactivos oficiales (Navbar colapsable, Cards en Bento Grid, Carrusel, Modales, Tablas y Formularios). Como en clase todavía **no hemos visto JavaScript**, toda la interactividad funciona de forma nativa con los atributos oficiales de HTML de Bootstrap (`data-bs-toggle="modal"`, `data-bs-ride="carousel"`), garantizando un diseño limpio y 100% responsivo."*
+> *"Profesor Jonathan, para el Producto del Momento 2 migramos nuestro proyecto integrador **ProGanado** al framework **Bootstrap 5.3**, cumpliendo todos los temas vistos en clase: sistema de rejilla de 12 columnas, componentes interactivos oficiales (Navbar colapsable, Cards en Bento Grid, Carrusel, Modales, Tablas y Formularios). La maqueta usa HTML/CSS y el JavaScript mínimo de Bootstrap, toda la interactividad funciona de forma nativa con los atributos oficiales de HTML de Bootstrap (`data-bs-toggle="modal"`, `data-bs-ride="carousel"`), garantizando un diseño limpio y 100% responsivo."*
 
 ---
 
@@ -41,12 +41,12 @@
 ### Pregunta 4: *"¿Cómo está estructurada la tabla de vacas y por qué no tiene JavaScript?"*
 **Tu respuesta:**
 - *"La tabla está construida estrictamente en HTML5 Semántico usando las clases oficiales de Bootstrap `.table`, `.table-hover`, `.table-striped` y `.badge` para los estados de sanidad e inocuidad."*
-- *"Como en la materia aún no hemos visto JavaScript, no quisimos meter código que no estuviera avalado en el plan docente. Cada fila representa un registro real de nuestro hato, mapeando exactamente las columnas de nuestra base de datos relacional de SQL Server (`Bovinos`, `Razas`, `Potreros`)."*
+- *"La estructura y los estilos son HTML/CSS; el dashboard incluye el JavaScript mínimo de Bootstrap y un script de demo para contadores, sin lógica de negocio. Cada fila es un registro de ejemplo del prototipo, inspirado en las tablas bovinos, razas, potreros y pesajes_leche; la maqueta no está conectada a la base real."*
 
 ### Pregunta 5: *"¿Cómo se conecta esta interfaz con las otras materias (Bases de Datos y Lógica)?"*
 **Tu respuesta:**
 - *"Este es el corazón del Proyecto Integrador:*
-  1. *En **Bases de Datos**: Los campos que pedimos en el modal (Arete, Raza, Estado, Potrero, Retiro ICA, Litros) corresponden exactamente a las columnas de nuestras tablas `Bovinos`, `Razas`, `Potreros` y `PesajesLeche` en SQL Server.*
+  1. *En **Bases de Datos**: Los campos del modal se inspiran en bovinos, razas, potreros y pesajes_leche. La demo SQLite usa una tabla simplificada para enseñar el flujo formulario → POST → SELECT; el DDL de 12 tablas está en el repositorio.*
   2. *En **Lógica de Programación**: Las validaciones de si el animal está en retiro ICA para suspender la entrega a Colanta representan la estructura condicional (`SI retiroIca == VERDADERO ENTONCES leche = 0`) que modelamos en los algoritmos PSeInt.*
   3. *En **Intro a la Programación**: Demostramos maquetación profesional y responsive design con Bootstrap 5."*
 
@@ -91,7 +91,7 @@
 Con esta sustentación demuestras:
 1. Dominio de HTML5 semántico puro (sin sopa de divs).
 2. Dominio del framework Bootstrap 5 (Grid System 12 columnas, Cards, Modales, Carrusel, Navbar, Progress bars).
-3. Apego estricto al temario visto en clase (0 JavaScript ajeno o no enseñado).
+3. Apego estricto al temario visto en clase (JavaScript mínimo: Bootstrap y script de demo).
 4. Coherencia total con el Proyecto Integrador de la carrera (Bases de Datos + Lógica + Web).
 5. Despliegue en la nube con CI/CD automático en GitHub Pages.
 
