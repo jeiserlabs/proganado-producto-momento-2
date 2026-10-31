@@ -41,11 +41,11 @@ Este repositorio contiene la entrega oficial del **Producto del Momento 2** para
 4. **Métricas Zootécnicas (Bento Grid):**
    - 4 tarjetas informativas (`.card`) que totalizan el hato, gestaciones, vacas en retiro sanitario ICA y producción de leche para acopio Colanta.
 5. **Inventario General de Bovinos:**
-   - Tabla estilizada (`.table .table-hover .table-striped .table-responsive`) con 8 registros reales, fotografías individuales, estados productivos y badges de estado.
+   - Tabla estilizada (`.table .table-hover .table-striped .table-responsive`) con 8 registros de ejemplo, fotografías individuales, estados productivos y badges de estado.
 6. **Carrusel Fotográfico:**
    - Deslizador animado (`.carousel .carousel-fade`) con evidencia de campo, bienestar bovino y ordeño higiénico.
 7. **Inocuidad y Alerta Farmacológica ICA:**
-   - Módulo de seguimiento de días de retiro con alerta de Buenas Prácticas Ganaderas (Resolución ICA 067449) para proteger el tanque de leche de Colanta.
+   - Módulo de seguimiento de días de retiro con alerta de Buenas Prácticas Ganaderas (normativa ICA aplicable) para proteger el tanque de leche de Colanta.
 8. **Potreros Voisin (PRV):**
    - Monitoreo agroecológico de rotación con barras de progreso (`.progress-bar`) para días de ocupación y descanso forrajero.
 9. **Modales Nativos Oficiales de Bootstrap:**
