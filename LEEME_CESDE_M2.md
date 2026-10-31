@@ -27,7 +27,7 @@ Este entregable implementa la capa visual y de interacción del Proyecto Integra
 - **Botón de impresión:** `onclick="window.print()"` (uno de los dos atributos inline mínimos).
 
 ### 3. Interoperabilidad Zootécnica y Reglas de Negocio
-- **Inocuidad ICA (normativa ICA aplicable):** la maqueta muestra badges de ejemplo (Apto Colanta / En Retiro). La regla real de cinta roja vive en SQL (`v_bovinos_cinta_roja`) y en TypeScript (`evaluarCintaRoja`); el PSeInt actual todavía no es fail-closed y debe corregirse antes de presentarlo como equivalente.
+- **Inocuidad ICA (normativa ICA aplicable):** la maqueta muestra badges de ejemplo (Apto Colanta / En Retiro). La regla real de cinta roja vive en SQL (`v_bovinos_cinta_roja`), TypeScript (`evaluarCintaRoja`) y PSeInt; los tres son fail-closed desde el 31-oct-2026: el último día sigue bloqueado y se libera al siguiente.
 - **Pastoreo Racional Voisin (PRV):** panel visual con barras de progreso (`.progress .progress-bar`) y datos de ejemplo; no es telemetría real.
 
 ---
