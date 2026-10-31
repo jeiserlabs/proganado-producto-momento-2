@@ -7,6 +7,19 @@
   --pg-surface: #f8fbf9;
   --pg-card-bg: #ffffff;
   --pg-border-color: #e2ece6;
+
+  /* Texto y énfasis accesibles (WCAG AA) */
+  --pg-on-dark-muted: #cfe3d7;
+  --pg-success-on-dark: #75b798;
+  --pg-success-on-subtle: #0a3622;
+  --pg-success-on-surface: #0f5132;
+  --pg-warning-on-subtle: #664d03;
+  --pg-focus: #75b798;
+
+  /* Radios unificados para botones, inputs y cards base */
+  --bs-border-radius: 10px;
+  --bs-border-radius-sm: 8px;
+  --bs-border-radius-lg: 14px;
 }
 
 body {
@@ -178,4 +191,48 @@ body {
   bottom: 24px;
   right: 24px;
   z-index: 1090;
+}
+
+/* ============================================================
+   Accesibilidad y consistencia (auditoría UX/UI 29-oct-2026)
+   ============================================================ */
+
+/* Clase usada por el H1 del dashboard; fw-extrabold no existe en Bootstrap 5.3 */
+.fw-extrabold {
+  font-weight: 800 !important;
+}
+
+/* Texto secundario sobre fondos oscuros: #cfe3d7 alcanza AA sobre el gradiente */
+.hero-wrapper .text-white-50,
+.text-on-dark-muted {
+  color: var(--pg-on-dark-muted) !important;
+}
+
+/* Éxito sobre fondo oscuro y sobre la tarjeta de código */
+.floating-badge .text-success,
+.code-card .text-success {
+  color: var(--pg-success-on-dark) !important;
+}
+
+/* Foco visible: shadow-sm usa !important y pisaba el anillo de Bootstrap */
+.btn:focus-visible,
+.btn-link:focus-visible,
+.nav-link:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--pg-focus);
+  outline-offset: 2px;
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 4px rgba(25, 135, 84, .25) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }

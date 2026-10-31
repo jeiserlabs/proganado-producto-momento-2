@@ -7,7 +7,7 @@
 
 ## 📌 Cumplimiento Estricto de la Rúbrica con Bootstrap 5
 
-Este entregable implementa la capa visual y de interacción del Proyecto Integrador **ProGanado S.A.S.** sobre **Bootstrap 5.3.3**. Es una maqueta académica: los datos de la tabla y las métricas son de ejemplo, y el formulario visual no persiste. La persistencia real está en la demo SQLite de Python del paquete de Drive (`03_PAGINAS_WEB_Y_DEMO_EN_VIVO/demo_sqlite/`), que usa una tabla simplificada y no el DDL completo de 12 tablas.
+Este entregable implementa la capa visual y de interacción del Proyecto Integrador **ProGanado S.A.S.** sobre **Bootstrap 5.3.3**. Es una maqueta académica: los datos de la tabla y las métricas son de ejemplo, y el formulario visual no persiste. La persistencia real está en la demo SQLite de Python (`demo_sqlite/`), que usa una tabla simplificada y no el DDL completo de 12 tablas.
 
 ### 1. Sistema de Rejilla (Grid System 12 Columnas)
 - Contenedores (`.container`, `.container-fluid`), filas (`.row`) y columnas responsivas (`.col-12`, `.col-md-6`, `.col-lg-3`, `.col-lg-7`, etc.).
@@ -58,5 +58,15 @@ Este entregable implementa la capa visual y de interacción del Proyecto Integra
 3. **Dashboard:** prueba navbar, carrusel, modales, botón de imprimir y cierre de sesión.
 4. **Aclara los límites:** la tabla, las métricas, el buscador, el filtro y el formulario son visuales; no hay persistencia en el navegador.
 
-### B. Demo SQLite (en el paquete de Drive)
-La demo persistente vive en el paquete de Drive (`03_PAGINAS_WEB_Y_DEMO_EN_VIVO/demo_sqlite/`), no en este repositorio de frontend. Desde esa carpeta, ejecuta `iniciar_demo.bat` o `python servidor.py` y abre `http://127.0.0.1:8000`. La demo guarda, filtra y persiste en una tabla simplificada; no es el DDL de 12 tablas.
+### B. Demo SQLite (persistente, una tabla)
+1. Ejecuta `iniciar_demo.bat` o, desde `demo_sqlite/`:
+   ```bash
+   python init_db.py
+   python servidor.py
+   ```
+2. Abre `http://127.0.0.1:8000`.
+3. Registra un bovino (arete `COL-1605`, nombre `Luna`, raza `Holstein`, peso `495.5`, estado `Activo`).
+4. Verifica el mensaje y la fila en la tabla; busca `Luna` y filtra por estado.
+5. Intenta registrar el mismo arete: debe rechazarlo por `UNIQUE`.
+6. Detén el servidor, reinícialo y recarga: el dato sigue en `proganado.db`.
+7. Esta demo sí guarda, filtra y persiste; su alcance es una tabla simplificada, no el DDL de 12 tablas.

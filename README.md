@@ -15,7 +15,7 @@
 ## 🌐 Ver en Vivo (GitHub Pages)
 👉 **[Abrir ProGanado en el Navegador](https://jeiserlabs.github.io/proganado-producto-momento-2/)** *(Compatible con móvil, tablet y PC)*
 
-> **⚡ Publicación automática en GitHub Pages:**
+> **⚡ Publicación automática en GitHub Pages:**  
 > El frontend está alojado en **GitHub Pages**. Cada vez que se realiza un `git push origin main`, GitHub Pages publica automáticamente el contenido estático en uno o dos minutos; no hay backend ni compilación. Cero servidores manuales ni configuraciones complejas.
 
 ---
