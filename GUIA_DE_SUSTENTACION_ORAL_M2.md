@@ -18,7 +18,7 @@
 
 ## ⚡ 1. Discurso de Apertura (30 Segundos para Romper el Hielo)
 
-> *"Profesor Jonathan, para el Producto del Momento 2 migramos nuestro proyecto integrador **ProGanado** al framework **Bootstrap 5.3**, cumpliendo todos los temas vistos en clase: sistema de rejilla de 12 columnas, componentes interactivos oficiales (Navbar colapsable, Cards en Bento Grid, Carrusel, Modales, Tablas y Formularios). La maqueta usa HTML/CSS y el JavaScript mínimo de Bootstrap, toda la interactividad funciona de forma nativa con los atributos oficiales de HTML de Bootstrap (`data-bs-toggle="modal"`, `data-bs-ride="carousel"`), garantizando un diseño limpio y 100% responsivo."*
+> *"Profesor Jonathan, para el Producto del Momento 2 migramos nuestro proyecto integrador **ProGanado** al framework **Bootstrap 5.3**, cumpliendo los temas vistos en clase: sistema de rejilla de 12 columnas, componentes interactivos oficiales (Navbar colapsable, Cards en Bento Grid, Carrusel, Modales, Tablas y Formularios). La maqueta usa HTML/CSS y el bundle de JavaScript de Bootstrap; además tiene dos atributos inline mínimos (`window.print()` para imprimir y `onsubmit="return false"` para que el formulario visual no recargue). No hay archivos JavaScript propios ni lógica de negocio en el navegador. El diseño es 100% responsivo."*
 
 ---
 
@@ -36,12 +36,12 @@
 
 ### Pregunta 3: *"¿Cómo abren los modales (emergentes) sin recargar la página?"*
 **Tu respuesta:**
-- *"Usamos los data attributes nativos de HTML de Bootstrap: `data-bs-toggle='modal'` y `data-bs-target='#modalRegistroBovino'`. Bootstrap se encarga del fondo oscuro y la animación `.fade`. Para cerrarlo usamos `data-bs-dismiss='modal'`, 100% nativo sin necesidad de programar JavaScript."*
+- *"Usamos los data attributes nativos de HTML de Bootstrap: `data-bs-toggle='modal'` y `data-bs-target='#modalRegistroBovino'`. Bootstrap se encarga del fondo oscuro y la animación `.fade`. Para cerrarlo usamos `data-bs-dismiss='modal'`. No escribimos JavaScript propio para eso: el bundle de Bootstrap lee los atributos y hace el trabajo."*
 
-### Pregunta 4: *"¿Cómo está estructurada la tabla de vacas y por qué no tiene JavaScript?"*
+### Pregunta 4: *"¿Cómo está estructurada la tabla de vacas?"*
 **Tu respuesta:**
 - *"La tabla está construida estrictamente en HTML5 Semántico usando las clases oficiales de Bootstrap `.table`, `.table-hover`, `.table-striped` y `.badge` para los estados de sanidad e inocuidad."*
-- *"La estructura y los estilos son HTML/CSS; el dashboard incluye el JavaScript mínimo de Bootstrap y un script de demo para contadores, sin lógica de negocio. Cada fila es un registro de ejemplo del prototipo, inspirado en las tablas bovinos, razas, potreros y pesajes_leche; la maqueta no está conectada a la base real."*
+- *"La tabla es estática: tiene 8 registros de ejemplo del prototipo. El buscador y el selector de estado son visuales; no filtran porque no hay JavaScript propio. El filtro real está en el módulo SQLite, que es la demo de Python. La maqueta no está conectada a la base real."*
 
 ### Pregunta 5: *"¿Cómo se conecta esta interfaz con las otras materias (Bases de Datos y Lógica)?"*
 **Tu respuesta:**
@@ -53,12 +53,12 @@
 ### Pregunta 6: *"¿Dónde está alojado el frontend y qué pasa cuando actualizan el código en GitHub?"*
 **Tu respuesta:**
 - *"El frontend está alojado en la nube en **GitHub Pages** en la URL pública `https://jeiserlabs.github.io/proganado-producto-momento-2/`."*
-- *"Cada vez que hacemos `git push origin main`, GitHub dispara automáticamente un runner de CI/CD que compila y publica los cambios en vivo en 60 a 90 segundos. El docente o cualquier evaluador puede abrir el enlace desde su celular sin tener que descargar archivos ZIP ni instalar servidores locales."*
+- *"Cada vez que hacemos `git push origin main`, GitHub Pages publica automáticamente el contenido estático; no hay backend ni compilación. El cambio suele verse en uno o dos minutos. El docente o cualquier evaluador puede abrir el enlace desde su celular sin descargar archivos ZIP ni instalar servidores locales."*
 
 ### Pregunta 7: *"¿Cómo funciona el Login y por qué no exige una contraseña fija?"*
 **Tu respuesta:**
 - *"Porque para el Momento 2 se evalúa exclusivamente la capa de diseño y maquetación web (Frontend). No tenemos un servidor backend activo validando credenciales en una base de datos."*
-- *"Para que la entrega no tenga datos bloqueados ni falle si el docente escribe cualquier correo, implementamos un **Acceso Ganadero Abierto** con un **Token JWT Universal** demo. Cualquier persona puede escribir su correo, su nombre o dejarlo en blanco, y el sistema le da entrada directa con rol de Administrador."*
+- *"Para que la entrega no tenga datos bloqueados ni falle si el docente escribe cualquier correo, el formulario hace un `GET` directo a `dashboard.html`. No valida credenciales, no crea una sesión real y no asigna un rol de Administrador; el badge 'Administrador Hato' es decorativo. Es un acceso demo abierto, no autenticación real."*
 
 ---
 
@@ -66,8 +66,8 @@
 
 1. **Abre el enlace de GitHub Pages en el navegador (carga `index.html`).**
 2. **Muestra la Pantalla de Inicio de Sesión (Login Gate):**
-   - Señálale al profesor el diseño split-screen en Bootstrap 5, la foto del hato y el **Token JWT Universal Demo**.
-   - Explícale: *"Profesor, diseñamos una puerta de acceso abierta: cualquiera puede ingresar con cualquier usuario o contraseña, o entrar directamente con el botón de acceso sin bloqueos."*
+   - Señálale al profesor el diseño split-screen en Bootstrap 5, la foto del hato y el aviso de **Modo demostración**.
+   - Explícale: *"Profesor, diseñamos una puerta de acceso abierta: cualquiera puede ingresar con cualquier usuario o contraseña, o entrar directamente con el botón de acceso. No es autenticación real; es una demo de interfaz."*
 3. **Haz clic en "Ingresar al Dashboard Operativo →":**
    - El enlace navega de forma nativa a `dashboard.html`.
 4. **Muestra el Panel de Inicio Operativo:**
@@ -79,11 +79,13 @@
    - Achica la ventana para que vea cómo pasa a 1 columna fluido.
    - Haz clic en el botón hamburguesa para que vea abrir y cerrar el menú de navegación.
 6. **Prueba los Modales Nativos:**
-   - Haz clic en el botón verde **"+ Registrar Bovino"** para mostrar los inputs de formulario (`form-control`, `form-select`). Cierra con Cancelar para ver cómo `data-bs-dismiss="modal"` lo oculta limpiamente.
+   - Haz clic en el botón verde **"+ Registrar Bovino"** para mostrar los inputs (`form-control`, `form-select`). Aclara: *"El formulario es visual; no guarda ni añade filas."* Cierra con Cancelar para ver cómo `data-bs-dismiss="modal"` lo oculta limpiamente.
 7. **Muestra el botón "Ver Ficha" (el icono del ojo en la tabla):**
-   - Ábrelo para mostrar la foto zootécnica y la genealogía ampliada de Mariposa.
+   - Ábrelo para mostrar la ficha de ejemplo de **Mariposa (COL-1598)**. Aclara: *"Todas las filas abren la misma ficha de ejemplo porque no hay JavaScript propio que cambie los datos; la ficha real vendría de la base de datos."*
 8. **Prueba el botón "Cerrar Sesión":**
    - Haz clic en el botón superior **"Cerrar Sesión"** para mostrar cómo el sistema regresa limpiamente a `index.html`.
+9. **Cierra con la distinción honesta:**
+   - *"Lo que funciona de verdad en esta maqueta es la navegación, el navbar responsive, el carrusel, los modales y el botón de imprimir. La tabla, las métricas, el buscador y el filtro son datos de ejemplo; el formulario no persiste. La persistencia real está en la demo SQLite de Python, que es otra parte del proyecto."*
 
 ---
 
@@ -91,8 +93,8 @@
 Con esta sustentación demuestras:
 1. Dominio de HTML5 semántico puro (sin sopa de divs).
 2. Dominio del framework Bootstrap 5 (Grid System 12 columnas, Cards, Modales, Carrusel, Navbar, Progress bars).
-3. Apego estricto al temario visto en clase (JavaScript mínimo: Bootstrap y script de demo).
+3. Apego estricto al temario visto en clase (JavaScript mínimo: bundle de Bootstrap + dos atributos inline; sin archivos JS propios).
 4. Coherencia total con el Proyecto Integrador de la carrera (Bases de Datos + Lógica + Web).
-5. Despliegue en la nube con CI/CD automático en GitHub Pages.
+5. Despliegue en la nube con GitHub Pages y publicación automática del contenido estático.
 
-**Nota esperada:** **5.0 / 5.0**.
+**Objetivo:** demostrar dominio y honestidad. No prometas funciones que la maqueta no tiene; explicar los límites también suma.

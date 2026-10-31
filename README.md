@@ -15,8 +15,8 @@
 ## 🌐 Ver en Vivo (GitHub Pages)
 👉 **[Abrir ProGanado en el Navegador](https://jeiserlabs.github.io/proganado-producto-momento-2/)** *(Compatible con móvil, tablet y PC)*
 
-> **⚡ Despliegue Continuo (CI/CD Automático):**  
-> El frontend está alojado en la infraestructura global de **GitHub Pages**. Cada vez que se realiza un `git push origin main`, los servidores de GitHub compilan y publican los cambios automáticamente en vivo en 60 a 90 segundos. Cero servidores manuales ni configuraciones complejas.
+> **⚡ Publicación automática en GitHub Pages:**
+> El frontend está alojado en **GitHub Pages**. Cada vez que se realiza un `git push origin main`, GitHub Pages publica automáticamente el contenido estático en uno o dos minutos; no hay backend ni compilación. Cero servidores manuales ni configuraciones complejas.
 
 ---
 
@@ -24,9 +24,9 @@
 
 Este repositorio contiene la entrega oficial del **Producto del Momento 2** para el Proyecto Integrador **ProGanado S.A.S.**:
 - **Arquitectura de Dos Vistas (Multi-página HTML5):**
-  1. `index.html`: **Pantalla de Inicio de Sesión (Login Gate)** con diseño split-screen en Bootstrap 5, contexto ganadero, formulario abierto y **Token JWT Universal demo**.
+  1. `index.html`: **Pantalla de Inicio de Sesión (Login Gate)** con diseño split-screen en Bootstrap 5, contexto ganadero, formulario abierto de **acceso demo** (sin validación real ni JWT).
   2. `dashboard.html`: **Panel de Control Operativo Completo** con Navbar sticky, resumen de agenda sanitaria, composición del hato con barras de progreso, acopio Colanta, tabla de inventario, carrusel y modales nativos.
-- **CERO líneas de JavaScript propio:** Toda la interactividad (navegación multipágina, modales de registro/detalle, carrusel animado y menú colapsable en móviles) funciona de forma 100% nativa con etiquetas HTML e hipervínculos estándar y los atributos oficiales de Bootstrap (`data-bs-toggle="modal"`, `data-bs-target`, `data-bs-ride="carousel"`), garantizando estricto apego al contenido visto en clase.
+- **Sin archivos JavaScript propios:** la navegación, los modales, el carrusel y el menú colapsable funcionan con el bundle de Bootstrap y los atributos oficiales (`data-bs-toggle="modal"`, `data-bs-target`, `data-bs-ride="carousel"`). El único JavaScript inline son dos atributos mínimos: `onclick="window.print()"` y `onsubmit="return false"`. No hay lógica de negocio en el navegador.
 
 ---
 
@@ -50,8 +50,8 @@ Este repositorio contiene la entrega oficial del **Producto del Momento 2** para
    - Monitoreo agroecológico de rotación con barras de progreso (`.progress-bar`) para días de ocupación y descanso forrajero.
 9. **Modales Nativos Oficiales de Bootstrap:**
    - Modal de Acceso Ganadero / Login (`#modalLogin`).
-   - Modal de Alta de Bovino (`#modalRegistroBovino`).
-   - Modal de Ficha Técnica Individual (`#modalDetalleBovino`).
+   - Modal de Alta de Bovino (`#modalRegistroBovino`; formulario visual, no persiste).
+   - Modal de Ficha Técnica de ejemplo (`#modalDetalleBovino`; muestra Mariposa).
    - Modal de Política de Protección de Datos (`#modalPrivacidad` bajo la Ley 1581 de 2012).
 
 ---
