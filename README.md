@@ -12,6 +12,19 @@
 
 ---
 
+## 📁 Dónde se trabaja (SSOT)
+
+| Qué | Dónde |
+|---|---|
+| Página web (este repo) | `C:\PROYECTOS\Mis_Proyectos\ProGanado_Web` · `jeiserlabs/proganado-producto-momento-2` |
+| Código, DDL, TS, Zod, PSeInt y tests | `C:\PROYECTOS\Mis_Proyectos\ProGanado` · `jeiserlabs/proganado` |
+| PDFs, PPTX, assets y ZIP | https://drive.google.com/drive/folders/1_Ozo8XA7UjZPFWDf9WtDfhg5XgCmmKns |
+| Mapa de rutas y timeline | [`docs/sustentacion_2026/SSOT_Y_TIMELINE.md`](https://github.com/jeiserlabs/proganado/blob/main/docs/sustentacion_2026/SSOT_Y_TIMELINE.md) |
+
+**Regla:** se trabaja en local, se sube a GitHub y se actualiza Drive en la misma sesión. No se crean copias de estudio en el Escritorio.
+
+---
+
 ## 🌐 Ver en Vivo (GitHub Pages)
 👉 **[Abrir ProGanado en el Navegador](https://jeiserlabs.github.io/proganado-producto-momento-2/)** *(Compatible con móvil, tablet y PC)*
 
@@ -23,7 +36,8 @@
 ## 📌 Descripción del Entregable
 
 Este repositorio contiene la entrega oficial del **Producto del Momento 2** para el Proyecto Integrador **ProGanado S.A.S.**:
-- **Arquitectura de Dos Vistas (Multi-página HTML5):**
+- **Arquitectura de Tres Vistas (Multi-página HTML5):**
+  0. `landing.html`: presentación comercial con el problema, los datos de ejemplo y las capacidades de la maqueta.
   1. `index.html`: **Pantalla de Inicio de Sesión (Login Gate)** con diseño split-screen en Bootstrap 5, contexto ganadero, formulario abierto de **acceso demo** (sin validación real ni JWT).
   2. `dashboard.html`: **Panel de Control Operativo Completo** con Navbar sticky, resumen de agenda sanitaria, composición del hato con barras de progreso, acopio Colanta, tabla de inventario, carrusel y modales nativos.
 - **Sin archivos JavaScript propios:** la navegación, los modales, el carrusel y el menú colapsable funcionan con el bundle de Bootstrap y los atributos oficiales (`data-bs-toggle="modal"`, `data-bs-target`, `data-bs-ride="carousel"`). El único JavaScript inline son dos atributos mínimos: `onclick="window.print()"` y `onsubmit="return false"`. No hay lógica de negocio en el navegador.
