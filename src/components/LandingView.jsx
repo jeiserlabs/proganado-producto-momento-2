@@ -65,7 +65,7 @@ export default function LandingView({ onEnterApp }) {
           return (
             <div
               key={i}
-              className="p-7 rounded-2xl bg-white border border-[#e2ece6] hover:border-[#198754] transition-all hover:shadow-lg space-y-3.5 shadow-sm"
+              className="p-7 rounded-2xl bg-white border border-[#e2ece6] hover:border-[#198754] transition-all hover:shadow-lg space-y-3.5 shadow-sm scroll-reveal"
             >
               <div className="flex items-center justify-between">
                 <div className="w-12 h-12 rounded-xl bg-[#d1e7dd] flex items-center justify-center text-[#0f5132]">

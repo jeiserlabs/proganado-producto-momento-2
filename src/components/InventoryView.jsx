@@ -65,7 +65,7 @@ export default function InventoryView({ bovinos, onSelectCow }) {
             <div
               key={vaca.id}
               onClick={() => onSelectCow(vaca)}
-              className="group cursor-pointer rounded-2xl bg-white border border-[#e2ece6] hover:border-[#198754] overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-sm"
+              className="group cursor-pointer rounded-2xl bg-white border border-[#e2ece6] hover:border-[#198754] overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-sm scroll-reveal"
             >
               {/* Photo */}
               <div className="h-44 w-full bg-[#f1f8f4] relative overflow-hidden">

@@ -29,6 +29,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#f8fbf9] text-[#2b3b32] flex flex-col font-sans selection:bg-[#198754] selection:text-white">
+      {/* CSS Scroll-Driven Animation: Barra de lectura nativa (0 JS) */}
+      <div className="scroll-progress-bar" aria-hidden="true" />
       
       {/* Top Navbar Dark Emerald Institucional */}
       <Navbar
