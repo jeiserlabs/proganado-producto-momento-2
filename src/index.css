@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased font-sans selection:bg-emerald-500 selection:text-white;
+    min-height: 100vh;
+  }
+}
+
+/* React Bits: Spotlight Glow Container */
+.spotlight-card {
+  position: relative;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.spotlight-card:hover {
+  border-color: rgba(52, 211, 153, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(5, 150, 105, 0.2);
+}
+
+/* React Bits: Aurora Animated Gradient */
+.aurora-mesh {
+  background: radial-gradient(circle at 10% 20%, rgba(5, 150, 105, 0.25) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 40%),
+              radial-gradient(circle at 50% 50%, rgba(6, 78, 59, 0.3) 0%, transparent 60%);
+  background-size: 200% 200%;
+  animation: aurora 16s ease-in-out infinite alternate;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}

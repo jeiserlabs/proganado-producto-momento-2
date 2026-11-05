@@ -1,3 +1,8 @@
+# Dependencias y builds
+node_modules/
+dist/
+.vite/
+
 # Sistema
 Thumbs.db
 ehthumbs.db
