@@ -28,9 +28,9 @@ export default function App() {
   const icaAlertsCount = bovinos.filter((b) => b.diasRetiroIca > 0).length;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-[#f8fbf9] text-[#2b3b32] flex flex-col font-sans selection:bg-[#198754] selection:text-white">
       
-      {/* Top Navbar */}
+      {/* Top Navbar Dark Emerald Institucional */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -70,8 +70,8 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
+      {/* Footer ProGanado */}
+      <footer className="border-t border-[#e2ece6] bg-white py-6 text-center text-xs text-[#52665a]">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <span>ProGanado S.A.S. · Software de Gestión Ganadera e Inocuidad</span>
           <span>Proyecto Integrador CESDE 2026 · Jeiser Gutiérrez</span>

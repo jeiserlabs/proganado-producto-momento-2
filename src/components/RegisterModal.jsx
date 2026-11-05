@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Plus, Milk, Check } from 'lucide-react';
+import { X, Plus, Check } from 'lucide-react';
 
 export default function RegisterModal({ isOpen, onClose, onAddBovino }) {
   if (!isOpen) return null;
@@ -37,57 +37,58 @@ export default function RegisterModal({ isOpen, onClose, onAddBovino }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-      <div className="w-full max-w-lg rounded-2xl bg-slate-900 border border-emerald-800/40 p-6 shadow-2xl shadow-emerald-950/60 space-y-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
+      <div className="w-full max-w-lg rounded-2xl bg-white border border-[#e2ece6] overflow-hidden shadow-2xl space-y-5">
         
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-          <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-700/40">
+        {/* Header Dark Emerald */}
+        <div className="bg-[#0b291b] p-5 flex items-center justify-between text-white border-b-2 border-[#1f5038]">
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 rounded-xl bg-[#133d2a] text-[#75b798] border border-[#2d6e4d]">
               <Plus className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-bold text-white text-base">Registrar Nuevo Bovino</h3>
-              <p className="text-[11px] text-slate-400">Ingreso a inventario oficial Finca La Pradera</p>
+              <h3 className="font-extrabold text-white text-base">Registrar Nuevo Bovino</h3>
+              <p className="text-[11px] text-[#cfe3d7]">Ingreso a inventario oficial Finca La Pradera</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-white p-1 rounded-lg">
+          <button onClick={onClose} className="text-[#cfe3d7] hover:text-white p-1 rounded-lg">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 pt-0 space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-semibold text-slate-300 block mb-1">Nombre Animal</label>
+              <label className="text-xs font-bold text-[#2b3b32] block mb-1">Nombre Animal</label>
               <input
                 required
                 type="text"
                 placeholder="Ej. Serena"
                 value={formData.nombre}
                 onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full px-3 py-2 rounded-xl bg-[#f8fbf9] border border-[#e2ece6] text-[#2b3b32] text-xs focus:outline-none focus:border-[#198754]"
               />
             </div>
             <div>
-              <label className="text-xs font-semibold text-slate-300 block mb-1">Chapa / Identificador</label>
+              <label className="text-xs font-bold text-[#2b3b32] block mb-1">Chapa / Identificador</label>
               <input
                 required
                 type="text"
                 placeholder="Ej. CO-1490-LP"
                 value={formData.chapa}
                 onChange={(e) => setFormData({ ...formData, chapa: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full px-3 py-2 rounded-xl bg-[#f8fbf9] border border-[#e2ece6] text-[#2b3b32] text-xs focus:outline-none focus:border-[#198754]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-semibold text-slate-300 block mb-1">Raza</label>
+              <label className="text-xs font-bold text-[#2b3b32] block mb-1">Raza</label>
               <select
                 value={formData.raza}
                 onChange={(e) => setFormData({ ...formData, raza: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full px-3 py-2 rounded-xl bg-[#f8fbf9] border border-[#e2ece6] text-[#2b3b32] text-xs focus:outline-none focus:border-[#198754]"
               >
                 <option value="Holstein Puro">Holstein Puro</option>
                 <option value="Jersey">Jersey</option>
@@ -97,11 +98,11 @@ export default function RegisterModal({ isOpen, onClose, onAddBovino }) {
               </select>
             </div>
             <div>
-              <label className="text-xs font-semibold text-slate-300 block mb-1">Estado Reproductivo</label>
+              <label className="text-xs font-bold text-[#2b3b32] block mb-1">Estado Reproductivo</label>
               <select
                 value={formData.estado}
                 onChange={(e) => setFormData({ ...formData, estado: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full px-3 py-2 rounded-xl bg-[#f8fbf9] border border-[#e2ece6] text-[#2b3b32] text-xs focus:outline-none focus:border-[#198754]"
               >
                 <option value="En Ordeño">En Ordeño</option>
                 <option value="Seca">Seca</option>
@@ -113,38 +114,38 @@ export default function RegisterModal({ isOpen, onClose, onAddBovino }) {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-semibold text-slate-300 block mb-1">Litros Estimados / Día</label>
+              <label className="text-xs font-bold text-[#2b3b32] block mb-1">Litros Estimados / Día</label>
               <input
                 type="number"
                 step="0.1"
                 min="0"
                 value={formData.litrosDia}
                 onChange={(e) => setFormData({ ...formData, litrosDia: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full px-3 py-2 rounded-xl bg-[#f8fbf9] border border-[#e2ece6] text-[#2b3b32] text-xs focus:outline-none focus:border-[#198754]"
               />
             </div>
             <div>
-              <label className="text-xs font-semibold text-slate-300 block mb-1">Potrero Asignado</label>
+              <label className="text-xs font-bold text-[#2b3b32] block mb-1">Potrero Asignado</label>
               <input
                 type="text"
                 value={formData.potrero}
                 onChange={(e) => setFormData({ ...formData, potrero: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-emerald-500"
+                className="w-full px-3 py-2 rounded-xl bg-[#f8fbf9] border border-[#e2ece6] text-[#2b3b32] text-xs focus:outline-none focus:border-[#198754]"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-[#e2ece6]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-white"
+              className="px-4 py-2 rounded-xl text-xs font-semibold text-[#52665a] hover:text-[#2b3b32]"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/40 flex items-center gap-1.5"
+              className="px-5 py-2 rounded-xl text-xs font-bold bg-[#198754] hover:bg-[#0f5132] text-white shadow-md flex items-center gap-1.5"
             >
               <Check className="w-4 h-4" /> Guardar Registro
             </button>

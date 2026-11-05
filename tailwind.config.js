@@ -8,26 +8,29 @@ export default {
     extend: {
       colors: {
         pg: {
-          dark: '#0b291b',
-          emerald: '#064e3b',
-          primary: '#059669',
-          light: '#10b981',
-          subtle: '#d1fae5',
-          accent: '#34d399',
+          primary: '#198754',
+          'primary-dark': '#0f5132',
+          'primary-light': '#d1e7dd',
+          accent: '#ffc107',
+          'dark-emerald': '#0b291b',
+          surface: '#f8fbf9',
+          card: '#ffffff',
+          border: '#e2ece6',
+          'border-hover': '#a3cfbb',
+          'text-main': '#2b3b32',
+          'text-muted': '#52665a',
+          'success-dark': '#0a3622',
+          'warning-bg': '#fff3cd',
+          'warning-text': '#664d03',
+          'warning-border': '#ffe69c',
         }
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
       },
-      animation: {
-        'aurora': 'aurora 20s linear infinite',
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
-      keyframes: {
-        aurora: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        }
+      boxShadow: {
+        'pg-card': '0 4px 18px rgba(11, 41, 27, 0.05)',
+        'pg-hover': '0 10px 28px rgba(25, 135, 84, 0.12)',
       }
     },
   },
