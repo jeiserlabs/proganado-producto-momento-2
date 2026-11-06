@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Guía Maestra de Sustentación — ProGanado Web (React 19 + Tailwind + Bases de Datos)</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 12mm 14mm 14mm 14mm;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.5;
+      font-size: 9.5pt;
+    }
+    h1, h2, h3, h4 {
+      color: #0b291b;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    h1 { font-size: 18pt; margin-bottom: 4px; color: #ffffff; }
+    h2 {
+      font-size: 12.5pt;
+      border-bottom: 2px solid #198754;
+      padding-bottom: 4px;
+      margin: 16px 0 8px;
+      page-break-after: avoid;
+      color: #0b291b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    h3 {
+      font-size: 10.5pt;
+      color: #198754;
+      margin: 10px 0 4px;
+      page-break-after: avoid;
+    }
+    p { margin-bottom: 6px; }
+    .page-break { page-break-before: always; }
+
+    /* Header Banner Institucional */
+    .header-box {
+      background: linear-gradient(135deg, #0b291b 0%, #155724 100%);
+      color: #ffffff;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+    .header-box .meta {
+      font-size: 8.5pt;
+      color: #d1e7dd;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.25);
+      padding-top: 6px;
+    }
+
+    /* Cajas Callout */
+    .callout {
+      background: #f8fafc;
+      border-left: 4px solid #198754;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      margin: 8px 0;
+      font-size: 9pt;
+    }
+    .callout-warning {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+    .callout-blue {
+      background: #f0fdf4;
+      border-left-color: #0d6efd;
+    }
+
+    /* Tabla de Dos Columnas: Código vs Explicación */
+    .two-col-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 14px 0;
+      table-layout: fixed;
+    }
+    .two-col-table th {
+      background: #0b291b;
+      color: #ffffff;
+      padding: 6px 10px;
+      font-size: 9pt;
+      text-align: left;
+      font-weight: 700;
+      border: 1px solid #0b291b;
+    }
+    .two-col-table td {
+      vertical-align: top;
+      padding: 8px 10px;
+      border: 1px solid #cbd5e1;
+      font-size: 8.5pt;
+    }
+    .col-code {
+      width: 50%;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+    .col-exp {
+      width: 50%;
+      background: #ffffff;
+      color: #1e293b;
+    }
+
+    pre {
+      font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+      font-size: 7.8pt;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #e2e8f0;
+      margin: 0;
+    }
+    .code-tag { color: #f43f5e; font-weight: bold; }
+    .code-attr { color: #38bdf8; }
+    .code-str { color: #4ade80; }
+    .code-prop { color: #fbbf24; }
+    .code-comment { color: #94a3b8; font-style: italic; }
+
+    /* Tablas Comparativas */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 8.5pt;
+    }
+    .comp-table th {
+      background: #198754;
+      color: white;
+      padding: 6px 8px;
+      text-align: left;
+      border: 1px solid #146c43;
+    }
+    .comp-table td {
+      padding: 6px 8px;
+      border: 1px solid #cbd5e1;
+    }
+    .comp-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-react { background: #e0f2fe; color: #0369a1; }
+    .badge-tailwind { background: #ccfbf1; color: #0f766e; }
+    .badge-sql { background: #fef3c7; color: #92400e; }
+    .badge-nosql { background: #f3e8ff; color: #7e22ce; }
+
+    .doc-footer {
+      font-size: 7.5pt;
+      color: #64748b;
+      border-top: 1px solid #cbd5e1;
+      padding-top: 6px;
+      margin-top: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PORTADA / ENCABEZADO -->
+  <div class="header-box">
+    <h1>PROGANADO S.A.S. — GUÍA MAESTRA DE SUSTENTACIÓN</h1>
+    <div style="font-size: 11pt; color: #a3cfbb; font-weight: 600;">
+      Momento 2: Maquetación Web Profesional (React 19 + Tailwind CSS + Persistencia)
+    </div>
+    <div class="meta">
+      <span><strong>Institución:</strong> CESDE · Escuela de Tecnología e Innovación</span>
+      <span><strong>Docente:</strong> Jonathan Felipe Piedrahita</span>
+      <span><strong>Equipo:</strong> Jeiser Gutiérrez, Sebastián Correa, Emilio Villanueva, Humberto Pinto</span>
+    </div>
+  </div>
+
+  <div class="callout callout-warning">
+    <strong>🎯 Propósito de esta Guía:</strong> Proporcionar a cada integrante del equipo una explicación exacta y desglosada, 
+    <strong>línea por línea en dos columnas</strong> (Código de un lado vs Explicación del otro), dominando cada contenedor, div, 
+    formato de imagen, animación en CSS puro y el modelo de datos en el cliente vs bases de datos relacionales y NoSQL.
+  </div>
+
+  <!-- SECCIÓN 1: POR QUÉ REACT Y TAILWIND -->
+  <h2>1. La Realidad de la Industria 2026: ¿Por Qué React + Tailwind y No Bootstrap?</h2>
+  <p>
+    En la sustentación, el equipo debe justificar con criterio de ingeniería por qué se migró de Bootstrap 5 a <strong>React 19 + Tailwind CSS</strong>:
+  </p>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Criterio Técnico</th>
+        <th>Bootstrap 5 (Legacy 2011–2020)</th>
+        <th>React 19 + Tailwind CSS (Estándar Industria 2026)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Adopción en la Industria</strong></td>
+        <td>En declive para proyectos nuevos. Usado mayormente en mantenimiento de sistemas monolíticos heredados.</td>
+        <td><strong>Líder absoluto:</strong> React domina con ~68% de cuota en SPAs; Tailwind tiene >80% de satisfacción en el <em>State of CSS</em>.</td>
+      </tr>
+      <tr>
+        <td><strong>Paradigma de Diseño</strong></td>
+        <td><em>Componentes rígidos y prehechos:</em> Todas las webs se ven idénticas a menos que se sobreescriba con CSS pesado.</td>
+        <td><em>Diseño atómico sin límites:</em> Clases utilitarias directas en el elemento sin salirse del flujo de diseño.</td>
+      </tr>
+      <tr>
+        <td><strong>Rendimiento y Bundle</strong></td>
+        <td>Carga hojas de estilo pesadas con cientos de clases que nunca se usan en la pantalla.</td>
+        <td><strong>Tree-shaking estricto:</strong> Vite y Tailwind purgan el CSS y solo empaquetan las clases exactas que usamos (24 kB finales).</td>
+      </tr>
+      <tr>
+        <td><strong>Alineación con el Docente</strong></td>
+        <td>Tema superado en los primeros módulos de maquetación tradicional.</td>
+        <td><strong>Alineación total:</strong> En la clase del 31-Oct, el docente Felipe Piedrahita introdujo <code>Tailwind + Flowbite</code> en clase.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECCIÓN 2: ANATOMÍA EN DOS COLUMNAS -->
+  <div class="page-break"></div>
+  <h2>2. Anatomía de la Página Web: Código JSX vs Explicación de Producción</h2>
+  <p>
+    A continuación se desglosan los bloques estructurales de la aplicación. En la columna izquierda se observa el código HTML/JSX exacto 
+    y en la derecha la explicación que debe dar el expositor.
+  </p>
+
+  <!-- BLOQUE 1: HEADER & NAVBAR -->
+  <h3>Bloque 1: Header Institucional y Barra de Navegación (Navbar.jsx)</h3>
+  <table class="two-col-table">
+    <thead>
+      <tr>
+        <th class="col-code">Código HTML / JSX en el Frontend</th>
+        <th class="col-exp">Explicación para el Jurado / Qué controla</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-code">
+<pre>&lt;<span class="code-tag">header</span> <span class="code-attr">className</span>=<span class="code-str">"sticky top-0 z-40 bg-[#0b291b] border-b border-[#1f5038]"</span>&gt;
+  &lt;<span class="code-tag">div</span> <span class="code-attr">className</span>=<span class="code-str">"max-w-7xl mx-auto px-4 h-16 flex items-center justify-between"</span>&gt;
+    
+    <span class="code-comment">{/* Logo & Marca Ganadera */}</span>
+    &lt;<span class="code-tag">div</span> <span class="code-attr">className</span>=<span class="code-str">"flex items-center gap-3 cursor-pointer"</span>&gt;
+      &lt;<span class="code-tag">div</span> <span class="code-attr">className</span>=<span class="code-str">"w-10 h-10 rounded-xl bg-[#198754] flex items-center justify-center text-white font-black"</span>&gt;
+        PG
+      &lt;/<span class="code-tag">div</span>&gt;
+      &lt;<span class="code-tag">h1</span> <span class="code-attr">className</span>=<span class="code-str">"text-xl font-extrabold text-white tracking-tight"</span>&gt;
+        ProGanado&lt;<span class="code-tag">span</span> <span class="code-attr">className</span>=<span class="code-str">"text-[#75b798]"</span>&gt;SaaS&lt;/<span class="code-tag">span</span>&gt;
+      &lt;/<span class="code-tag">h1</span>&gt;
+    &lt;/<span class="code-tag">div</span>&gt;
+
+    <span class="code-comment">{/* Botones de Navegación */}</span>
+    &lt;<span class="code-tag">nav</span> <span class="code-attr">className</span>=<span class="code-str">"flex items-center gap-1 bg-[#133d2a] p-1 rounded-xl"</span>&gt;
+      {['dashboard', 'inventario', 'sanidad'].map((tab) =&gt; (
+        &lt;<span class="code-tag">button</span> <span class="code-attr">key</span>={tab} <span class="code-attr">onClick</span>={() =&gt; setActiveTab(tab)}
+          <span class="code-attr">className</span>={activeTab === tab ? <span class="code-str">"bg-[#198754] text-white"</span> : <span class="code-str">"text-[#a3cfbb]"</span>}&gt;
+          {tab}
+        &lt;/<span class="code-tag">button</span>&gt;
+      ))}
+    &lt;/<span class="code-tag">nav</span>&gt;
+  &lt;/<span class="code-tag">div</span>&gt;
+&lt;/<span class="code-tag">header</span>&gt;</pre>
+        </td>
+        <td class="col-exp">
+          <strong>1. Contenedor Semántico <code>&lt;header&gt;</code>:</strong>
+          <ul>
+            <li><code>sticky top-0 z-40</code>: Hace que el menú quede fijado en la parte superior de la pantalla cuando el usuario hace scroll hacia abajo.</li>
+            <li><code>bg-[#0b291b]</code>: Color Verde Esmeralda Profundo (#0b291b) que transmite identidad corporativa agropecuaria.</li>
+          </ul>
+          <strong>2. Container Central <code>max-w-7xl mx-auto</code>:</strong>
+          <ul>
+            <li>Evita que el contenido se estire infinitamente en monitores anchos (4K). Centra el contenido en 1.280 píxeles.</li>
+          </ul>
+          <strong>3. Navegación Dinámica Reactiva:</strong>
+          <ul>
+            <li>No recarga la página. El array <code>['dashboard', 'inventario', 'sanidad']</code> se renderiza con un <code>.map()</code>.</li>
+            <li>El botón activo cambia de color instantáneamente alternando clases de Tailwind mediante la variable de estado <code>activeTab</code>.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- BLOQUE 2: CARDS DEL GANADO Y MANEJO DE FOTOS -->
+  <h3>Bloque 2: Tarjetas de Bovinos, Contenedor de Fotos y Animación (InventoryView.jsx)</h3>
+  <table class="two-col-table">
+    <thead>
+      <tr>
+        <th class="col-code">Código HTML / JSX en el Frontend</th>
+        <th class="col-exp">Explicación para el Jurado / Qué controla</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-code">
+<pre>&lt;<span class="code-tag">div</span> <span class="code-attr">className</span>=<span class="code-str">"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"</span>&gt;
+  {filtered.map((vaca) =&gt; (
+    &lt;<span class="code-tag">div</span> <span class="code-attr">key</span>={vaca.id} <span class="code-attr">onClick</span>={() =&gt; onSelectCow(vaca)}
+      <span class="code-attr">className</span>=<span class="code-str">"group rounded-2xl bg-white border border-[#e2ece6] overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"</span>&gt;
+      
+      <span class="code-comment">{/* Contenedor de la Foto con Efecto Zoom */}</span>
+      &lt;<span class="code-tag">div</span> <span class="code-attr">className</span>=<span class="code-str">"h-44 w-full bg-[#f1f8f4] relative overflow-hidden"</span>&gt;
+        &lt;<span class="code-tag">img</span>
+          <span class="code-attr">src</span>={vaca.foto}
+          <span class="code-attr">alt</span>={vaca.nombre}
+          <span class="code-attr">className</span>=<span class="code-str">"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"</span>
+        /&gt;
+        &lt;<span class="code-tag">span</span> <span class="code-attr">className</span>=<span class="code-str">"absolute top-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-md text-white text-xs rounded-lg"</span>&gt;
+          {vaca.raza}
+        &lt;/<span class="code-tag">span</span>&gt;
+      &lt;/<span class="code-tag">div</span>&gt;
+
+      <span class="code-comment">{/* Datos del Bovino y Alerta ICA */}</span>
+      &lt;<span class="code-tag">div</span> <span class="code-attr">className</span>=<span class="code-str">"p-4"</span>&gt;
+        &lt;<span class="code-tag">h4</span> <span class="code-attr">className</span>=<span class="code-str">"font-bold text-gray-900"</span>&gt;{vaca.nombre}&lt;/<span class="code-tag">h4</span>&gt;
+        &lt;<span class="code-tag">p</span> <span class="code-attr">className</span>=<span class="code-str">"text-xs text-gray-500"</span>&gt;Chapa: {vaca.chapa}&lt;/<span class="code-tag">p</span>&gt;
+        {vaca.diasRetiroIca &gt; 0 &amp;&amp; (
+          &lt;<span class="code-tag">span</span> <span class="code-attr">className</span>=<span class="code-str">"inline-block mt-2 px-2 py-0.5 bg-red-100 text-red-700 text-xs font-bold rounded"</span>&gt;
+            ⚠️ Retiro ICA: {vaca.diasRetiroIca} días
+          &lt;/<span class="code-tag">span</span>&gt;
+        )}
+      &lt;/<span class="code-tag">div</span>&gt;
+    &lt;/<span class="code-tag">div</span>&gt;
+  ))}
+&lt;/<span class="code-tag">div</span>&gt;</pre>
+        </td>
+        <td class="col-exp">
+          <strong>1. Grid Responsivo de Tarjetas:</strong>
+          <ul>
+            <li><code>grid-cols-1 md:grid-cols-2 lg:grid-cols-4</code>: Maquetación adaptativa que se reorganiza automáticamente: 1 columna en celulares, 2 en tablets y 4 en PC.</li>
+          </ul>
+          <strong>2. Manejo y Formato de las Fotos (JPG locales):</strong>
+          <ul>
+            <li><code>h-44 w-full relative overflow-hidden</code>: Contenedor con altura fija (176px). Si la imagen del ganado es más ancha o más alta, no deforma la tarjeta ni rompe la cuadrícula.</li>
+            <li><code>object-cover</code>: Fuerza a la foto a llenar el contenedor recortando proporcionalmente los bordes (técnica usada en Instagram y Airbnb).</li>
+            <li><code>src={vaca.foto}</code>: Lee el archivo local de <code>assets/ganado/vaca_XXXX.jpg</code>.</li>
+          </ul>
+          <strong>3. Micro-interacción y Animación de Movimiento:</strong>
+          <ul>
+            <li><code>hover:-translate-y-1</code>: La tarjeta entera se eleva suavemente 4 píxeles al pasar el mouse por encima.</li>
+            <li><code>group-hover:scale-105 duration-500</code>: La foto de la vaca hace un zoom suave de 5% sin salirse del marco, gracias al <code>overflow-hidden</code>.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- BLOQUE 3: CSS SCROLL ANIMATION -->
+  <div class="page-break"></div>
+  <h3>Bloque 3: Animación Progresiva en CSS Moderno Puro (index.css)</h3>
+  <table class="two-col-table">
+    <thead>
+      <tr>
+        <th class="col-code">Código CSS en src/index.css</th>
+        <th class="col-exp">Explicación para el Jurado / Qué controla</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-code">
+<pre><span class="code-comment">/* Barra de Progreso de Lectura con CSS Scroll-Driven */</span>
+<span class="code-tag">.scroll-progress-bar</span> {
+  <span class="code-prop">position</span>: fixed;
+  <span class="code-prop">top</span>: 0;
+  <span class="code-prop">left</span>: 0;
+  <span class="code-prop">height</span>: 4px;
+  <span class="code-prop">width</span>: 100%;
+  <span class="code-prop">background</span>: #198754;
+  <span class="code-prop">transform-origin</span>: 0% 50%;
+  <span class="code-prop">z-index</span>: 100;
+  
+  <span class="code-comment">/* Propiedad Moderna W3C */</span>
+  <span class="code-prop">animation</span>: grow-progress auto linear;
+  <span class="code-prop">animation-timeline</span>: scroll();
+}
+
+<span class="code-tag">@keyframes</span> grow-progress {
+  <span class="code-prop">from</span> { <span class="code-prop">transform</span>: scaleX(0); }
+  <span class="code-prop">to</span>   { <span class="code-prop">transform</span>: scaleX(1); }
+}</pre>
+        </td>
+        <td class="col-exp">
+          <strong>1. Cero Líneas de JavaScript (0% CPU en JS):</strong>
+          <ul>
+            <li>Tradicionalmente se usaba <code>window.addEventListener('scroll', ...)</code> para calcular cuánto bajaba el usuario. Eso saturaba el procesador.</li>
+            <li>Con <code>animation-timeline: scroll()</code>, el cálculo lo realiza el motor de renderizado del navegador directamente en la tarjeta de video (GPU).</li>
+          </ul>
+          <strong>2. Cómo funciona la física del movimiento:</strong>
+          <ul>
+            <li><code>transform: scaleX(0)</code> a <code>scaleX(1)</code>: La barra empieza con ancho cero y se estira hasta el 100% a medida que se llega al footer.</li>
+            <li><code>transform-origin: 0% 50%</code>: Ancla el crecimiento al borde izquierdo de la pantalla.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECCIÓN 3: MÓDULO DE BASES DE DATOS -->
+  <h2>3. Módulo Técnico: Arquitectura de Datos (Frontend vs SQL vs NoSQL)</h2>
+  <p>
+    Para sustentar con autoridad técnica, el equipo debe dominar las diferencias entre el almacenamiento en el cliente que usamos en la web, 
+    la base de datos relacional SQL que diseñamos para la materia de BD, y la base NoSQL (MongoDB) vista en clase con el docente.
+  </p>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Característica</th>
+        <th>1. Almacenamiento Frontend (localStorage)</th>
+        <th>2. SQL Relacional (SQLite / PostgreSQL / SQL Server)</th>
+        <th>3. NoSQL Documental (MongoDB)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>¿Dónde vive?</strong></td>
+        <td>En el navegador web de cada usuario (cliente).</td>
+        <td>En un servidor o archivo de base de datos relacional local/cloud.</td>
+        <td>En un servidor distribuido en formato documental.</td>
+      </tr>
+      <tr>
+        <td><strong>Capacidad Máxima</strong></td>
+        <td><strong>~5 MB a 10 MB</strong> por dominio web.</td>
+        <td><strong>Gigabytes a Terabytes</strong> (Ilimitado según el disco).</td>
+        <td><strong>Petabytes</strong> (Escalabilidad horizontal masiva).</td>
+      </tr>
+      <tr>
+        <td><strong>Estructura</strong></td>
+        <td>Pares clave-valor en texto plano (Strings/JSON).</td>
+        <td>Tablas rígidas con columnas, tipos estrictos y DDL.</td>
+        <td>Colecciones de documentos BSON/JSON flexibles.</td>
+      </tr>
+      <tr>
+        <td><strong>Integridad Referencial</strong></td>
+        <td>Ninguna. Si borras un potrero, las vacas quedan huérfanas.</td>
+        <td><strong>Total (ACID):</strong> Llaves foráneas (FK), ON DELETE CASCADE.</td>
+        <td>Por embebido o referencias manuales sin restricciones ACID rígidas.</td>
+      </tr>
+      <tr>
+        <td><strong>Caso de Uso ProGanado</strong></td>
+        <td><strong>Prototipo Web M2:</strong> Guardar el estado de la sesión y filtros sin latencia de red.</td>
+        <td><strong>Núcleo Oficial (Bases de Datos):</strong> 12 tablas con auditoría, pesaje de leche y trazabilidad sanitaria.</td>
+        <td><strong>Telemetría IoT:</strong> Lecturas por segundo de collares GPS o sensores de temperatura en campo.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECCIÓN 4: CÓMO SE CONECTA LA WEB A LA BASE DE DATOS -->
+  <div class="page-break"></div>
+  <h2>4. Cómo se Conecta la Página Web a la Base de Datos en Producción</h2>
+  <p>
+    Una página web de navegador <strong>jamás se conecta directamente a una base de datos SQL</strong> por razones de ciberseguridad (se expondrían las credenciales de la base de datos a cualquier usuario que abra la consola del navegador F12). 
+    El flujo estándar de la industria es una arquitectura en tres capas:
+  </p>
+
+  <div class="callout callout-blue">
+    <strong>Arquitectura Estándar Cliente-Servidor:</strong><br>
+    <code>[Cliente: React Web] ── (HTTP GET/POST / JSON) ──► [Servidor Backend: Node.js / Express] ── (Query SQL) ──► [Base de Datos: SQLite / PostgreSQL]</code>
+  </div>
+
+  <table class="two-col-table">
+    <thead>
+      <tr>
+        <th class="col-code">Implementación en el Código</th>
+        <th class="col-exp">Explicación del Proceso Paso a Paso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-code">
+<pre><span class="code-comment">// 1. EN EL FRONTEND (React)</span>
+<span class="code-comment">// Hace una petición asíncrona a la API REST</span>
+<span class="code-tag">async function</span> <span class="code-prop">cargarBovinosDesdeServidor</span>() {
+  <span class="code-tag">const</span> res = <span class="code-tag">await</span> fetch(<span class="code-str">'http://localhost:3000/api/bovinos'</span>);
+  <span class="code-tag">const</span> data = <span class="code-tag">await</span> res.json();
+  setBovinos(data);
+}
+
+<span class="code-comment">// 2. EN EL BACKEND (Node.js + Express + SQLite)</span>
+<span class="code-comment">// Recibe la petición y consulta la base de datos protegida</span>
+app.get(<span class="code-str">'/api/bovinos'</span>, (req, res) =&gt; {
+  <span class="code-tag">const</span> query = <span class="code-str">'SELECT * FROM bovinos WHERE estado = "En Ordeño"'</span>;
+  <span class="code-tag">const</span> rows = db.prepare(query).all();
+  res.json(rows); <span class="code-comment">// Devuelve los datos en formato JSON</span>
+});</pre>
+        </td>
+        <td class="col-exp">
+          <strong>1. Petición Asíncrona (Fetch API):</strong>
+          <ul>
+            <li>React ejecuta la función <code>fetch()</code> en segundo plano. La interfaz del usuario no se congela mientras viajan los datos.</li>
+          </ul>
+          <strong>2. Capa Intermedia de Seguridad (Backend REST API):</strong>
+          <ul>
+            <li>El servidor backend actúa como un guardia de seguridad. Valida los permisos del usuario antes de tocar la base de datos.</li>
+          </ul>
+          <strong>3. Ejecución del Query SQL:</strong>
+          <ul>
+            <li>El backend ejecuta la sentencia <code>SELECT</code> contra la base de datos relacional y convierte las filas de la tabla en un array de objetos JSON para que React los pinte en las tarjetas.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- CIERRE Y RESPUESTA MAESTRA -->
+  <h2>5. Script de Sustentación Oral para el Equipo</h2>
+  <div class="callout callout-warning">
+    <strong>Pregunta Clave del Profesor Jonathan:</strong> <em>"¿Por qué su página web usa React y Tailwind en lugar de Bootstrap, y cómo manejan los datos?"</em><br><br>
+    <strong>Respuesta Recomendada del Expositor:</strong><br>
+    <em>"Profesor, en ProGanado tomamos la decisión de aplicar las tecnologías que hoy dominan la industria del software. Migramos de Bootstrap a React 19 con Tailwind CSS porque nos brinda arquitectura basada en componentes modulares, mayor velocidad de renderizado y un CSS optimizado con cero desperdicio de código.
+    <br><br>
+    Respecto a los datos, implementamos una separación de responsabilidades: para este Momento 2, la web funciona como una SPA con persistencia en el <code>localStorage</code> del cliente y animaciones de scroll ejecutadas en GPU. Diseñamos este modelo en el frontend con exactamente los mismos atributos que definimos en las 12 tablas de nuestro modelo SQLite para la materia de Bases de Datos, dejando la aplicación 100% lista para conectarse mediante una API REST en el siguiente momento."</em>
+  </div>
+
+  <div class="doc-footer">
+    Proyecto Integrador ProGanado S.A.S. · Escuela de Tecnología CESDE · Convocatoria 2026-2 · Guía Oficial de Sustentación Oral M2
+  </div>
+
+</body>
+</html>

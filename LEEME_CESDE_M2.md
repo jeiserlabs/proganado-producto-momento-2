@@ -1,72 +1,107 @@
 # PROGANADO S.A.S. — PRODUCTO MOMENTO 2 (CESDE 2026-2)
-**Materia:** Introducción a la Programación / Diseño Web  
+**Materia:** Introducción a la Programación / Maquetación Web  
 **Estudiantes:** Jeiser Abraham Gutiérrez Torres, Sebastián Correa, Héctor Pinto, Emilio Villanueva  
-**Docente:** Jonathan Felipe Piedrahita Nieto | **Aula 406**
+**Docente Evaluador:** Jonathan Felipe Piedrahita Nieto | **Aula 406**  
+**Stack de Producción:** React 19 · Vite 6 · Tailwind CSS 3.4 · CSS Scroll-Driven Animations (Baseline 2026) · Lucide Icons
 
 ---
 
-## 📌 Cumplimiento Estricto de la Rúbrica con Bootstrap 5
+## 📌 1. Visión General del Entregable
 
-Este entregable implementa la capa visual y de interacción del Proyecto Integrador **ProGanado S.A.S.** sobre **Bootstrap 5.3.3**. Es una maqueta académica: los datos de la tabla y las métricas son de ejemplo, y el formulario visual no persiste. La persistencia real está en la demo SQLite de Python (`demo_sqlite/`), que usa una tabla simplificada y no el DDL completo de 12 tablas.
+Este producto representa la interfaz web moderna e interactiva de **ProGanado S.A.S.**, el sistema de información ganadero para la gestión de hatos lecheros y control de inocuidad (normativa ICA / acopio Colanta) en Antioquia.
 
-### 1. Sistema de Rejilla (Grid System 12 Columnas)
-- Contenedores (`.container`, `.container-fluid`), filas (`.row`) y columnas responsivas (`.col-12`, `.col-md-6`, `.col-lg-3`, `.col-lg-7`, etc.).
-- Comportamiento fluido en móviles, tablets y escritorio.
-
-### 2. Componentes Oficiales de Bootstrap Implementados
-- **Navbar Responsive:** barra fija (`.navbar .navbar-expand-lg .sticky-top`) con menú hamburguesa (`.navbar-toggler`). Funciona con el bundle de Bootstrap.
-- **Hero Banner:** tipografía escalada (`.display-5`, `.lead`), insignias (`.badge`) y botones (`.btn .btn-success`).
-- **Tarjetas Bento Grid (Métricas):** 4 tarjetas (`.card`) con datos de ejemplo.
-- **Carrusel Fotográfico:** `.carousel .slide .carousel-fade` con indicadores y controles. Funciona con el bundle de Bootstrap.
-- **Tablas Responsivas:** `.table .table-hover .table-striped .table-responsive` con 8 registros de ejemplo y miniaturas.
-- **Formularios Estructurados:** `.form-label`, `.form-control`, `.form-select`, `.input-group`, `.form-check-input` dentro del modal de alta. Es un formulario visual: no guarda ni añade filas.
-- **Modales de Bootstrap:**
-  1. `#modalRegistroBovino`: modal de alta visual; el formulario no persiste.
-  2. `#modalDetalleBovino`: ficha de ejemplo de Mariposa (COL-1598). Todas las filas abren la misma ficha porque no hay JavaScript propio que cambie los datos.
-  3. `#modalPrivacidad`: política de tratamiento de datos (Ley 1581 de 2012).
-- **Botón de impresión:** `onclick="window.print()"` (uno de los dos atributos inline mínimos).
-
-### 3. Interoperabilidad Zootécnica y Reglas de Negocio
-- **Inocuidad ICA (normativa ICA aplicable):** la maqueta muestra badges de ejemplo (Apto Colanta / En Retiro). La regla real de cinta roja vive en SQL (`v_bovinos_cinta_roja`), TypeScript (`evaluarCintaRoja`) y PSeInt; los tres son fail-closed desde el 31-oct-2026: el último día sigue bloqueado y se libera al siguiente.
-- **Pastoreo Racional Voisin (PRV):** panel visual con barras de progreso (`.progress .progress-bar`) y datos de ejemplo; no es telemetría real.
+Inicialmente concebido sobre plantillas rígidas de Bootstrap 5, el proyecto fue elevado y refactorizado a una arquitectura moderna basada en componentes con **React 19**, **Vite** y **Tailwind CSS**, incorporando la especificación **Baseline 2026 de animaciones nativas en CSS** gobernadas por scroll.
 
 ---
 
-## ✅ Qué funciona y qué no (para no prometer de más)
+## 🛠️ 2. Arquitectura Técnica y Cumplimiento de la Rúbrica
 
-| Elemento | ¿Funciona? | Detalle |
-|---|---|---|
-| Navegación entre páginas | Sí | Hipervínculos HTML |
-| Navbar responsive / menú hamburguesa | Sí | Bundle de Bootstrap |
-| Carrusel | Sí | Bundle de Bootstrap |
-| Modales (registro, ficha, privacidad) | Sí | Atributos `data-bs-*` + bundle de Bootstrap |
-| Botón Imprimir Reporte | Sí | `onclick="window.print()"` |
-| Login | Demo | Formulario `GET` a `dashboard.html`; no valida credenciales ni crea sesión |
-| Tabla y métricas | No | Datos estáticos de ejemplo (8 registros) |
-| Buscador y filtro | No | Visuales; el filtro real está en la demo SQLite |
-| Formulario Registrar Bovino | No | Visual; no guarda, no añade filas ni actualiza contadores |
-| Toasts / exportar CSV | No | No existen en esta maqueta |
-| JavaScript propio | No | Solo bundle de Bootstrap + dos atributos inline mínimos (`window.print()` y `onsubmit="return false"`) |
+### A. Estructura Semántica HTML5 Pura
+Toda la aplicación se compone mediante elementos semánticos estándar:
+- `<header>`: Barra superior institucional con navegación y badges de alerta.
+- `<nav>`: Enlaces de cambio de contexto SPA (Dashboard, Inventario, Sanidad, Propuesta SaaS).
+- `<main>`: Contenedor central flexible para renderizado dinámico de vistas.
+- `<section>` y `<article>`: Tarjetas modulares de métricas zootécnicas e inventario bovino.
+- `<footer>`: Pie de página corporativo con créditos institucionales del CESDE.
 
----
+### B. Estilos y Diseño Responsivo (Tailwind CSS + CSS3)
+- **Sistema de Rejilla Fluido:** Grid responsivo de 1 columna en móviles, 2 en tablets y 4 en pantallas grandes (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`).
+- **Paleta Oficial ProGanado:**
+  - Verde Esmeralda Institucional: `#0b291b` (Header y Hero)
+  - Verde Campo Primario: `#198754` (Botones de acción y acentos)
+  - Fondo Base Limpio: `#f8fbf9`
+  - Tarjetas Blancas Premium: `#ffffff` con bordes suaves `#e2ece6`
+- **Componentes React Bits:** Tarjetas interactivas `<SpotlightCard />` con halo de iluminación radial suave según la posición del cursor.
 
-## 🚀 Cómo Ejecutar y Probar
-
-### A. Maqueta Bootstrap (visual)
-1. **Abrir directamente:** doble clic sobre `index.html` en Chrome, Edge, Firefox o Brave.
-2. **Login demo:** escribe cualquier correo/clave o entra directo; no es autenticación real.
-3. **Dashboard:** prueba navbar, carrusel, modales, botón de imprimir y cierre de sesión.
-4. **Aclara los límites:** la tabla, las métricas, el buscador, el filtro y el formulario son visuales; no hay persistencia en el navegador.
-
-### B. Demo SQLite (persistente, una tabla)
-1. Ejecuta `iniciar_demo.bat` o, desde `demo_sqlite/`:
-   ```bash
-   python init_db.py
-   python servidor.py
+### C. Innovación: CSS Scroll-Driven Animations (0 JS)
+Se añadieron dos animaciones nativas en `src/index.css` que corren directamente en la GPU del navegador sin sobrecargar la CPU con JavaScript:
+1. **Barra de Progreso de Lectura (`.scroll-progress-bar`):**
+   ```css
+   @supports (animation-timeline: scroll()) {
+     .scroll-progress-bar {
+       animation: scrollProgress linear;
+       animation-timeline: scroll();
+     }
+   }
    ```
-2. Abre `http://127.0.0.1:8000`.
-3. Registra un bovino (arete `COL-1605`, nombre `Luna`, raza `Holstein`, peso `495.5`, estado `Activo`).
-4. Verifica el mensaje y la fila en la tabla; busca `Luna` y filtra por estado.
-5. Intenta registrar el mismo arete: debe rechazarlo por `UNIQUE`.
-6. Detén el servidor, reinícialo y recarga: el dato sigue en `proganado.db`.
-7. Esta demo sí guarda, filtra y persiste; su alcance es una tabla simplificada, no el DDL de 12 tablas.
+2. **Revelación de Elementos en Viewport (`.scroll-reveal`):**
+   ```css
+   @supports (animation-timeline: view()) {
+     .scroll-reveal {
+       animation: scrollReveal linear both;
+       animation-timeline: view();
+       animation-range: entry 5% cover 28%;
+     }
+   }
+   ```
+
+### D. Interactividad y Reactividad (React 19)
+- **Filtrado en Tiempo Real:** Búsqueda reactiva instantánea por arete/chapa, nombre y raza sin recargas de página.
+- **Filtros por Chips de Estado:** Visualización segmentada de vacas en ordeño, secas y gestantes.
+- **Persistencia en `localStorage`:** Los nuevos bovinos registrados mediante `<RegisterModal />` se guardan en el almacenamiento local del navegador, manteniéndose visibles tras recargar la página.
+
+---
+
+## 📂 3. Estructura de Archivos del Proyecto
+
+```
+ProGanado_Web/
+├── index.html                  # Punto de entrada HTML5 semántico
+├── vite.config.js              # Configuración del empaquetador ultrarrápido Vite 6
+├── tailwind.config.js          # Configuración de paleta corporativa y tipografía
+├── src/
+│   ├── main.jsx                # Montaje de la aplicación en #root
+│   ├── App.jsx                 # Componente orquestador y gestión de estado global
+│   ├── index.css               # Directivas Tailwind y Scroll-Driven Animations
+│   ├── data/
+│   │   └── bovinosData.js      # Datos zootécnicos iniciales de producción
+│   └── components/
+│       ├── Navbar.jsx          # Header institucional y navegación reactiva
+│       ├── DashboardView.jsx   # Hero, KPIs zootécnicos y acopio Colanta
+│       ├── InventoryView.jsx   # Grid de bovinos con búsqueda y filtros
+│       ├── HealthModule.jsx    # Alertas de retiro de antibiótico e inocuidad ICA
+│       ├── LandingView.jsx     # Propuesta de valor SaaS y scroll-reveal
+│       ├── RegisterModal.jsx   # Formulario reactivo de alta con validación
+│       ├── CowDetailModal.jsx  # Ficha técnica individual de cada animal
+│       ├── SpotlightCard.jsx   # Tarjetas con iluminación radial interactiva
+│       └── CountUp.jsx         # Animación fluida de contadores numéricos
+└── GUIA_DE_SUSTENTACION_ORAL_M2.md # Guía para la defensa oral ante el docente
+```
+
+---
+
+## 🚀 4. Cómo Ejecutar la Aplicación
+
+### Opción 1: Entorno de Desarrollo Local
+```bash
+npm install
+npm run dev
+```
+Abre automáticamente en `http://localhost:5173`.
+
+### Opción 2: Compilación de Producción
+```bash
+npm run build
+npm run preview
+```
+Genera un bundle estático optimizado en la carpeta `dist/` listo para despliegue en cualquier hosting estático (Vercel, Netlify o GitHub Pages).
