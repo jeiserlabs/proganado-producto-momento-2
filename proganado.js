@@ -111,6 +111,17 @@ async function authLoad() {
           u.user = String(u.user || u.correo || '').toLowerCase();
           u.correo = String(u.correo || u.user).toLowerCase();
         }
+        // Migración: si el admin canónico no existe, forzar seed actualizado.
+        const _canonico = 'jeiser270997@gmail.com';
+        if (!auth.usuarios.find(u => u.user === _canonico)) {
+          const _mSalt = 'a3f8c2e1b7d4906f';
+          const _mHash = await hashPassword('A125%230a', _mSalt);
+          // Reemplazar cualquier usuario 'admin' viejo; si no existe, agregar.
+          const idxViejo = auth.usuarios.findIndex(u => u.user === 'admin' || u.user === 'admin@proganado.co');
+          const adminEntry = { user: _canonico, correo: _canonico, nombre: 'Administrador', role: 'admin', salt: _mSalt, pw: _mHash };
+          if (idxViejo >= 0) auth.usuarios[idxViejo] = adminEntry;
+          else auth.usuarios.unshift(adminEntry);
+        }
         authSave();
         return;
       }
