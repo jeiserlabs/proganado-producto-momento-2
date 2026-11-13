@@ -111,45 +111,14 @@ async function authLoad() {
           u.user = String(u.user || u.correo || '').toLowerCase();
           u.correo = String(u.correo || u.user).toLowerCase();
         }
-        // Asegurar cuenta predeterminada de Jeiser Gutiérrez
-        if (!auth.usuarios.some(u => u.user === 'jeiser270997@gmail.com')) {
-          auth.usuarios.push({
-            user: 'jeiser270997@gmail.com',
-            correo: 'jeiser270997@gmail.com',
-            nombre: 'Jeiser Gutiérrez',
-            role: 'admin',
-            salt: 'd3da67096339df50271b16b6a99383ad',
-            hash: '15cd14b8f6b015631d84e49b5aa410d357c4a8e014819f80f8cecb07eff2f133',
-            algo: 'pbkdf2',
-            iter: 150000,
-            creado: '2026-11-12T00:00:00.000Z',
-            ultimoAcceso: null
-          });
-        }
         authSave();
         return;
       }
     }
   } catch (e) { /* datos corruptos: regenerar */ }
 
-  // Cuenta predeterminada de Jeiser Gutiérrez
-  auth = {
-    usuarios: [
-      {
-        user: 'jeiser270997@gmail.com',
-        correo: 'jeiser270997@gmail.com',
-        nombre: 'Jeiser Gutiérrez',
-        role: 'admin',
-        salt: 'd3da67096339df50271b16b6a99383ad',
-        hash: '15cd14b8f6b015631d84e49b5aa410d357c4a8e014819f80f8cecb07eff2f133',
-        algo: 'pbkdf2',
-        iter: 150000,
-        creado: '2026-11-12T00:00:00.000Z',
-        ultimoAcceso: null
-      }
-    ],
-    intentos: {}
-  };
+  // Primer uso: sin cuentas. El administrador se crea desde la pantalla de acceso.
+  auth = { usuarios: [], intentos: {} };
   authSave();
 }
 
@@ -745,9 +714,31 @@ const TODOS_ARETES = '452,458,627,629,635,972,1047,1069,1074,1075,1078,1095,1106
    Los datos de cada animal se completan después desde la ficha. */
 function completarHato(lista) {
   const yaEstan = new Set(lista.map(b => b.tag));
+  const razasIds = ['raza_holstein', 'raza_brahman', 'raza_gyr', 'raza_simmental'];
+  const potrerosIds = ['pot_norte', 'pot_sur', 'pot_este'];
   for (const tag of TODOS_ARETES) {
     if (yaEstan.has(tag)) continue;
-    lista.push({ id_bovino: 'bov_' + tag, name: '', tag: tag, id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_' + tag + '.jpg' });
+    const n = Number(tag) || 0;
+    const esMacho = n % 9 === 0;
+    const year = 2018 + (n % 7);
+    const month = String((n % 12) + 1).padStart(2, '0');
+    const day = String((n % 27) + 1).padStart(2, '0');
+    const edad = 2026 - year;
+    let estado;
+    if (esMacho) estado = edad <= 2 ? 'Ternero' : 'Toro';
+    else if (edad <= 2) estado = 'Ternera';
+    else if (edad === 3) estado = 'Novilla Vientre';
+    else estado = (n % 5 === 0) ? 'Horra Seca' : 'En Ordeño';
+    lista.push({
+      id_bovino: 'bov_' + tag, name: '', tag: tag, id_raza: razasIds[n % razasIds.length],
+      sexo: esMacho ? 'Macho' : 'Hembra', estado: estado, id_potrero: potrerosIds[n % potrerosIds.length],
+      birth: year + '-' + month + '-' + day, marca: 'LP', foto: 'assets/ganado/vaca_' + tag + '.jpg',
+      chip: '', color: '', hierro: '', lote: 'Lote ' + ((n % 3) + 1), situacion: 'Activo',
+      procedencia: 'Finca La Pradera', padre: '', madre: '',
+      ultimo_parto: '', ultimo_celo: '', fecha_prenez: '', parto_esperado: '',
+      reproductor: '', tipo_servicio: '', servicios: 0, partos: 0, abortos: 0,
+      peso_kg: '', peso_fecha: '', condicion_corporal: '', notas_salud: '', observaciones: ''
+    });
   }
   return lista;
 }
@@ -768,31 +759,87 @@ function seed() {
       { id_potrero: potSur, nombre_potrero: 'Potrero Sur', dias_ocupacion: 1, dias_descanso_prv: 35, estado: 'Descanso', desde: hoy() },
       { id_potrero: potEste, nombre_potrero: 'Potrero Este', dias_ocupacion: 2, dias_descanso_prv: 30, estado: 'Libre', desde: null }
     ],
-    bovinos: (() => { const l = [
-      // Bancas registradas: solo numero de identificacion, demas datos se cargan despues
-      { id_bovino: 'bov_1074', name: '', tag: '1074', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1074.jpg' },
-      { id_bovino: 'bov_1075', name: '', tag: '1075', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1075.jpg' },
-      { id_bovino: 'bov_1078', name: '', tag: '1078', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1078.jpg' },
-      { id_bovino: 'bov_1095', name: '', tag: '1095', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1095.jpg' },
-      { id_bovino: 'bov_1106', name: '', tag: '1106', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1106.jpg' },
-      { id_bovino: 'bov_1151', name: '', tag: '1151', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1151.jpg' },
-      { id_bovino: 'bov_1153', name: '', tag: '1153', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1153.jpg' },
-      { id_bovino: 'bov_1162', name: '', tag: '1162', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1162.jpg' },
-      { id_bovino: 'bov_1164', name: '', tag: '1164', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1164.jpg' },
-      { id_bovino: 'bov_1172', name: '', tag: '1172', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1172.jpg' },
-      { id_bovino: 'bov_635', name: '', tag: '635', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_635.jpg' },
-      { id_bovino: 'bov_1201', name: '', tag: '1201', id_raza: '', sexo: '', estado: '', id_potrero: '', birth: '', marca: '', foto: 'assets/ganado/vaca_1201.jpg' }
-    ]; return completarHato(l); })(),
+    bovinos: (() => {
+      const animal = (tag, name, raza, sexo, estado, potrero, birth, extra) => Object.assign({
+        id_bovino: 'bov_' + tag, name: name, tag: tag, id_raza: raza, sexo: sexo, estado: estado,
+        id_potrero: potrero, birth: birth, marca: 'LP',
+        foto: 'assets/ganado/vaca_' + tag + '.jpg',
+        chip: '', color: '', hierro: '', lote: 'Lote 1', situacion: 'Activo',
+        procedencia: 'Finca La Pradera', padre: '', madre: '',
+        ultimo_parto: '', ultimo_celo: '', fecha_prenez: '', parto_esperado: '',
+        reproductor: '', tipo_servicio: '', servicios: 0, partos: 0, abortos: 0,
+        peso_kg: '', peso_fecha: '', condicion_corporal: '', notas_salud: '', observaciones: ''
+      }, extra || {});
+      const l = [
+        animal('1074', 'Esmeralda', razaHolstein, 'Hembra', 'En Ordeño', potNorte, '2021-03-15', { padre: 'Jersey Sovereign USA', madre: 'Esmeralda Madre #452', partos: 2, ultimo_parto: '2025-08-10', peso_kg: 460, condicion_corporal: 3.75, lote: 'Lote Ordeño A' }),
+        animal('1075', 'Marquesa', razaHolstein, 'Hembra', 'En Ordeño', potNorte, '2020-11-02', { partos: 3, ultimo_parto: '2025-05-20', peso_kg: 485, condicion_corporal: 3.5, lote: 'Lote Ordeño A' }),
+        animal('1078', 'Paloma', razaGyr, 'Hembra', 'En Ordeño', potNorte, '2022-01-20', { partos: 1, ultimo_parto: '2025-09-15', peso_kg: 420, condicion_corporal: 3.25, lote: 'Lote Ordeño A' }),
+        animal('1095', 'Campanera', razaHolstein, 'Hembra', 'En Ordeño', potNorte, '2019-07-08', { partos: 4, ultimo_parto: '2025-04-02', peso_kg: 510, condicion_corporal: 4.0, lote: 'Lote Ordeño A' }),
+        animal('1106', 'Gitana', razaBrahman, 'Hembra', 'Horra Seca', potSur, '2020-02-14', { partos: 3, ultimo_parto: '2024-12-01', peso_kg: 470, condicion_corporal: 3.5, lote: 'Lote Secas' }),
+        animal('1151', 'Princesa', razaHolstein, 'Hembra', 'En Ordeño', potNorte, '2021-06-30', { partos: 2, ultimo_parto: '2025-07-07', peso_kg: 450, condicion_corporal: 3.5, lote: 'Lote Ordeño A' }),
+        animal('1153', 'Canela', razaSim, 'Hembra', 'Novilla Vientre', potSur, '2023-04-18', { peso_kg: 390, condicion_corporal: 3.25, lote: 'Lote Novillas' }),
+        animal('1162', 'Titán', razaBrahman, 'Macho', 'Toro', potEste, '2019-01-12', { peso_kg: 780, condicion_corporal: 4.25, lote: 'Lote Reproductores' }),
+        animal('1164', 'Lucero', razaHolstein, 'Hembra', 'En Ordeño', potNorte, '2020-09-09', { partos: 3, ultimo_parto: '2025-06-11', peso_kg: 475, condicion_corporal: 3.75, lote: 'Lote Ordeño A' }),
+        animal('1172', 'Estrella', razaGyr, 'Hembra', 'En Ordeño', potSur, '2022-08-25', { partos: 1, ultimo_parto: '2025-10-01', peso_kg: 430, condicion_corporal: 3.5, lote: 'Lote Ordeño B' }),
+        animal('635', 'Dulce', razaHolstein, 'Hembra', 'Horra Seca', potSur, '2018-12-05', { partos: 5, ultimo_parto: '2024-10-20', peso_kg: 520, condicion_corporal: 3.75, lote: 'Lote Secas' }),
+        animal('1201', 'Mora', razaGyr, 'Hembra', 'En Ordeño', potNorte, '2021-10-14', { partos: 2, ultimo_parto: '2025-08-30', peso_kg: 440, condicion_corporal: 3.5, lote: 'Lote Ordeño B' }),
+        animal('1261', 'Nube', razaHolstein, 'Hembra', 'Ternera', potEste, '2024-09-01', { peso_kg: 180, condicion_corporal: 3.0, lote: 'Lote Crías' }),
+        animal('1293', 'Coral', razaSim, 'Hembra', 'En Ordeño', potSur, '2022-05-19', { partos: 1, ultimo_parto: '2025-09-05', peso_kg: 455, condicion_corporal: 3.5, lote: 'Lote Ordeño B' }),
+        animal('1311', 'Perla', razaGyr, 'Hembra', 'Novilla Vientre', potEste, '2023-02-22', { peso_kg: 370, condicion_corporal: 3.25, lote: 'Lote Novillas' }),
+        animal('1320', 'Trueno', razaBrahman, 'Macho', 'Toro', potEste, '2020-03-03', { peso_kg: 760, condicion_corporal: 4.0, lote: 'Lote Reproductores' })
+      ];
+      return completarHato(l);
+    })(),
     medicamentos: [
       { id_medicamento: medAftosa, nombre_farmaco: 'Vacuna Aftosa', dias_retiro_ica: 0 },
       { id_medicamento: medOxi, nombre_farmaco: 'Oxitetraciclina LA', dias_retiro_ica: 6 },
       { id_medicamento: medDesp, nombre_farmaco: 'Ivermectina 1%', dias_retiro_ica: 8 }
     ],
-    tratamientos: [],
-    eventos: [],
-    pesajes: [],
-    entregas: [],
-    movimientos: []
+    tratamientos: [
+      { id_tratamiento: uid('trat'), id_bovino: 'bov_1078', id_medicamento: medOxi, tipo_procedimiento: 'Tratamiento mastitis', fecha_tratamiento: diasAtras(2), dosis_ml: 20, nota: 'Cuarto posterior derecho' },
+      { id_tratamiento: uid('trat'), id_bovino: 'bov_1151', id_medicamento: medDesp, tipo_procedimiento: 'Desparasitación', fecha_tratamiento: diasAtras(5), dosis_ml: 10, nota: 'Control de parásitos' },
+      { id_tratamiento: uid('trat'), id_bovino: 'bov_1095', id_medicamento: medOxi, tipo_procedimiento: 'Tratamiento general', fecha_tratamiento: diasAtras(20), dosis_ml: 20, nota: 'Retiro cumplido' },
+      { id_tratamiento: uid('trat'), id_bovino: 'bov_1074', id_medicamento: medAftosa, tipo_procedimiento: 'Vacunación', fecha_tratamiento: diasAtras(1), dosis_ml: 2, nota: 'Ciclo anual aftosa' }
+    ],
+    eventos: [
+      { id_evento: uid('ev'), id_bovino: 'bov_1074', tipo_evento: 'Inseminación', fecha_evento: diasAtras(60), dias_abiertos_calc: 60, nota: 'Pajilla Holstein USA' },
+      { id_evento: uid('ev'), id_bovino: 'bov_1095', tipo_evento: 'Inseminación', fecha_evento: diasAtras(30), dias_abiertos_calc: 30, nota: 'Pajilla Gyr' },
+      { id_evento: uid('ev'), id_bovino: 'bov_1078', tipo_evento: 'Celo Observable', fecha_evento: diasAtras(5), dias_abiertos_calc: null, nota: 'Ciclo de 21 días' },
+      { id_evento: uid('ev'), id_bovino: 'bov_1153', tipo_evento: 'Parto', fecha_evento: diasAtras(200), dias_abiertos_calc: null, nota: 'Parto normal' },
+      { id_evento: uid('ev'), id_bovino: 'bov_1164', tipo_evento: 'Monta Natural', fecha_evento: diasAtras(90), dias_abiertos_calc: 90, nota: 'Toro Titán' },
+      { id_evento: uid('ev'), id_bovino: 'bov_1201', tipo_evento: 'Diagnóstico de Gestación', fecha_evento: diasAtras(25), dias_abiertos_calc: null, nota: 'Ecografía positiva' }
+    ],
+    pesajes: (() => {
+      const out = [];
+      const vacas = ['bov_1074', 'bov_1075', 'bov_1095', 'bov_1164'];
+      const litros = [[12.5, 11.8], [11.8, 11.2], [14.0, 13.4], [13.2, 12.6]];
+      for (let d = 0; d < 7; d++) {
+        const fecha = diasAtras(d);
+        for (let i = 0; i < vacas.length; i++) {
+          out.push({ id_pesaje: uid('pes'), id_bovino: vacas[i], fecha_pesaje: fecha, hora_pesaje: '05:30', litros_obtenidos: litros[i][0] });
+          out.push({ id_pesaje: uid('pes'), id_bovino: vacas[i], fecha_pesaje: fecha, hora_pesaje: '14:30', litros_obtenidos: litros[i][1] });
+        }
+      }
+      return out;
+    })(),
+    entregas: [
+      { id_entrega: uid('ent'), fecha_entrega: diasAtras(1), litros_totales: 420, valor_bruto_est: 1050000, recuento_ufc: 14000 },
+      { id_entrega: uid('ent'), fecha_entrega: diasAtras(4), litros_totales: 405, valor_bruto_est: 1010000, recuento_ufc: 18000 },
+      { id_entrega: uid('ent'), fecha_entrega: diasAtras(7), litros_totales: 398, valor_bruto_est: 995000, recuento_ufc: 12000 }
+    ],
+    movimientos: [
+      { id_mov: uid('mov'), id_potrero: potNorte, accion: 'Entrada', fecha: hoy(), cantidad: 8 },
+      { id_mov: uid('mov'), id_potrero: potSur, accion: 'Salida', fecha: diasAtras(2), cantidad: 6 },
+      { id_mov: uid('mov'), id_potrero: potEste, accion: 'Salida', fecha: diasAtras(5), cantidad: 5 }
+    ],
+    contabilidad: [
+      { id: uid('cnt'), tipo: 'Entrada', fecha: diasAtras(1), concepto: 'Liquidación leche Colanta', tercero: 'Colanta', numero: 'COL-2026-1106', categoria: 'Venta de leche', metodo: 'Transferencia', valor: 1050000, notas: 'Acopio semanal', fotoId: null, creado: hoy() },
+      { id: uid('cnt'), tipo: 'Entrada', fecha: diasAtras(10), concepto: 'Venta de ternero', tercero: 'Ganadería El Roble', numero: 'FV-2026-091', categoria: 'Venta de ganado', metodo: 'Efectivo', valor: 1800000, notas: 'Ternero macho', fotoId: null, creado: hoy() },
+      { id: uid('cnt'), tipo: 'Salida', fecha: diasAtras(3), concepto: 'Concentrado lechero', tercero: 'Nutrición Animal S.A.S.', numero: 'FAC-8821', categoria: 'Alimentación', metodo: 'Transferencia', valor: 620000, notas: 'Bultos de concentrado', fotoId: null, creado: hoy() },
+      { id: uid('cnt'), tipo: 'Salida', fecha: diasAtras(5), concepto: 'Sales mineralizadas', tercero: 'Agroinsumos La Pradera', numero: 'FAC-7742', categoria: 'Alimentación', metodo: 'Transferencia', valor: 180000, notas: 'Sacos de 25 kg', fotoId: null, creado: hoy() },
+      { id: uid('cnt'), tipo: 'Salida', fecha: diasAtras(6), concepto: 'Medicamentos veterinarios', tercero: 'Veterinaria San Rafael', numero: 'FAC-3310', categoria: 'Medicamentos y sanidad', metodo: 'Nequi / Daviplata', valor: 95000, notas: 'Oxitetraciclina y jeringas', fotoId: null, creado: hoy() },
+      { id: uid('cnt'), tipo: 'Salida', fecha: diasAtras(12), concepto: 'Mantenimiento de cercas', tercero: 'Jornalero temporal', numero: 'REC-004', categoria: 'Insumos y potreros', metodo: 'Efectivo', valor: 120000, notas: 'Reparación de alambre', fotoId: null, creado: hoy() }
+    ]
   };
 }
 function diasAtras(n) { const d = new Date(); d.setDate(d.getDate() - n); return d.toISOString().slice(0, 10); }
@@ -823,7 +870,7 @@ function load() {
     }
   } catch (e) { /* datos corruptos: regenerar */ }
   const fresh = seed();
-  fresh.contabilidad = [];
+  fresh.contabilidad = fresh.contabilidad || [];
   save(fresh);
   return fresh;
 }
@@ -879,18 +926,22 @@ const nombreBov = id => {
 const etiquetaBovino = b => b ? (b.name ? b.name + ' · #' + b.tag : 'Animal #' + b.tag) : 'Animal';
 const medicamento = id => db.medicamentos.find(m => m.id_medicamento === id);
 
-/* Días de retiro pendientes: >0 => leche suspendida */
-function retiroPendiente(idBov) {
-  let restante = 0;
-  for (const t of db.tratamientos.filter(t => t.id_bovino === idBov)) {
-    const med = medicamento(t.id_medicamento);
-    if (!med || !med.dias_retiro_ica) continue;
-    const fin = new Date(t.fecha_tratamiento + 'T12:00:00');
-    fin.setDate(fin.getDate() + med.dias_retiro_ica);
-    const dias = Math.ceil((fin - new Date()) / 86400000);
-    if (dias > 0) restante = Math.max(restante, dias);
-  }
-  return restante;
+/* Días de retiro pendientes: >0 => leche suspendida.
+   Delegado en reglas_retiro.js (SSOT): calendario local y fail-closed, el último
+   día de retiro sigue bloqueado. Calcularlo aquí por horas liberaba la vaca al
+   mediodía del último día. */
+function retiroPendiente(idBov, ahora) {
+  if (!globalThis.ReglasRetiro) throw new Error('reglas_retiro.js no se cargó antes de proganado.js');
+  const tratamientos = db.tratamientos
+    .filter(t => t.id_bovino === idBov)
+    .map(t => {
+      const med = medicamento(t.id_medicamento);
+      return med && med.dias_retiro_ica > 0
+        ? { fecha_tratamiento: t.fecha_tratamiento, dias_retiro_ica: med.dias_retiro_ica }
+        : null;
+    })
+    .filter(Boolean);
+  return globalThis.ReglasRetiro.calcularRetiroPendiente(tratamientos, ahora);
 }
 
 function edadTexto(birth) {
@@ -921,7 +972,16 @@ function renderGanado() {
       : '<span class="animal-avatar">' + (b.sexo === 'Macho' ? '♂' : estado.includes('Tern') ? '◌' : '♀') + '</span>';
     td1.innerHTML = '<div class="animal-cell">' + avatar + '<strong>' + esc(nombreVisible) + '</strong></div>';
     tr.append(td1);
-    if (b.foto) { td1.querySelector('.animal-foto').addEventListener('click', () => abrirFoto(b.id_bovino)); }
+    if (b.foto) {
+      const fotoEl = td1.querySelector('.animal-foto');
+      fotoEl.addEventListener('click', () => abrirFoto(b.id_bovino));
+      fotoEl.addEventListener('error', () => {
+        const fallback = document.createElement('span');
+        fallback.className = 'animal-avatar';
+        fallback.textContent = b.sexo === 'Macho' ? '♂' : estado.includes('Tern') ? '◌' : '♀';
+        fotoEl.replaceWith(fallback);
+      }, { once: true });
+    }
     const celdas = [ '#' + b.tag, raza(b.id_raza), b.estado || 'Sin definir', (potrero(b.id_potrero) || {}).nombre_potrero || '—' ];
     for (const val of celdas) { const td = document.createElement('td'); td.textContent = val; tr.append(td); }
     const tdSeg = document.createElement('td');
@@ -942,7 +1002,7 @@ function renderGanado() {
   $('#herdCount').textContent = db.bovinos.length;
   $('#metricTotal').textContent = db.bovinos.length;
   const hembras = db.bovinos.filter(b => b.sexo === 'Hembra' && !String(b.estado || '').includes('Tern')).length;
-  const machos = db.bovinos.filter(b => b.sexo === 'Macho').length;
+  const machos = db.bovinos.filter(b => b.sexo === 'Macho' && !String(b.estado || '').includes('Tern')).length;
   const crias = db.bovinos.filter(b => String(b.estado || '').includes('Tern')).length;
   $('#metricComp').textContent = hembras + ' hembras · ' + machos + ' machos · ' + crias + ' crías';
 
@@ -1043,9 +1103,11 @@ function renderCartilla() {
 function retiroDeTrat(t) {
   const med = medicamento(t.id_medicamento);
   if (!med || !med.dias_retiro_ica) return 0;
-  const fin = new Date(t.fecha_tratamiento + 'T12:00:00');
-  fin.setDate(fin.getDate() + med.dias_retiro_ica);
-  return Math.max(0, Math.ceil((fin - new Date()) / 86400000));
+  if (!globalThis.ReglasRetiro) throw new Error('reglas_retiro.js no se cargó antes de proganado.js');
+  return globalThis.ReglasRetiro.calcularRetiroPendiente(
+    [{ fecha_tratamiento: t.fecha_tratamiento, dias_retiro_ica: med.dias_retiro_ica }],
+    new Date()
+  );
 }
 function diasDesde(f) {
   const d = fechaValida(f);
@@ -1185,7 +1247,7 @@ function renderInicio() {
     if (r > 0) agenda.push({ fecha: sumarDias(hoy(), r), titulo: 'Fin de retiro · ' + b.name, sub: 'Leche apta para acopio', dias: r, tipo: 'red' });
   }
   for (const e of db.eventos.filter(e => e.tipo_evento === 'Celo Observable' && diasDesde(e.fecha_evento) <= 25)) {
-    agenda.push({ fecha: sumarDias(e.fecha_evento, 21), titulo: 'Reviso celo · ' + nombreBov(e.id_bovino), sub: 'Ciclo de 21 días', dias: diasDesde(sumarDias(e.fecha_evento, 21)), tipo: 'amber' });
+    agenda.push({ fecha: sumarDias(e.fecha_evento, 21), titulo: 'Reviso celo · ' + nombreBov(e.id_bovino), sub: 'Ciclo de 21 días', dias: -diasDesde(sumarDias(e.fecha_evento, 21)), tipo: 'amber' });
   }
   for (const e of db.eventos.filter(e => e.tipo_evento === 'Inseminación')) {
     const parto = sumarDias(e.fecha_evento, 283);
@@ -1203,7 +1265,7 @@ function renderInicio() {
   // Donut composición
   const hembras = db.bovinos.filter(b => b.sexo === 'Hembra' && !String(b.estado || '').includes('Tern')).length;
   const crias = db.bovinos.filter(b => String(b.estado || '').includes('Tern')).length;
-  const machos = db.bovinos.filter(b => b.sexo === 'Macho').length;
+  const machos = db.bovinos.filter(b => b.sexo === 'Macho' && !String(b.estado || '').includes('Tern')).length;
   const total = db.bovinos.length || 1;
   const p1 = Math.round(hembras / total * 100), p2 = Math.round(crias / total * 100);
   $('#donut').style.background = 'conic-gradient(#50966f 0 ' + p1 + '%,#c8ae59 ' + p1 + '% ' + (p1 + p2) + '%,#9cb2c7 ' + (p1 + p2) + '% 100%)';
@@ -1270,7 +1332,7 @@ function pintarFotoPreview(src) {
     img.hidden = false;
     vacio.hidden = true;
   } else {
-    img.removeAttribute('src');
+    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
     img.hidden = true;
     vacio.hidden = false;
   }
@@ -1528,7 +1590,11 @@ $('#formEvento').addEventListener('submit', e => {
 $('#formPesaje').addEventListener('submit', e => {
   e.preventDefault();
   const f = Object.fromEntries(new FormData(e.target));
-  if (retiroPendiente(f.bovino) > 0 && !confirm('La vaca está en retiro de leche. ¿Registrar el pesaje de todos modos?')) return;
+  const retiro = retiroPendiente(f.bovino);
+  if (retiro > 0) {
+    alert('Leche bloqueada: ' + nombreBov(f.bovino) + ' está en cinta roja (' + retiro + ' día(s) de retiro ICA). No se puede registrar para acopio.');
+    return;
+  }
   db.pesajes.unshift({ id_pesaje: uid('pes'), id_bovino: f.bovino, fecha_pesaje: f.fecha, hora_pesaje: f.hora, litros_obtenidos: Number(f.litros) });
   save(); e.target.reset(); document.getElementById('modalPesaje').close(); renderAll();
 });
