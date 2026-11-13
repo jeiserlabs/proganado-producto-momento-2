@@ -117,8 +117,20 @@ async function authLoad() {
     }
   } catch (e) { /* datos corruptos: regenerar */ }
 
-  // Primer uso: sin cuentas. El administrador se crea desde la pantalla de acceso.
-  auth = { usuarios: [], intentos: {} };
+  // Primer uso: crear admin por defecto para demo/sustentación.
+  const _seedSalt = 'a3f8c2e1b7d4906f';
+  const _seedHash = await hashPassword('ProGanado2026', _seedSalt);
+  auth = {
+    usuarios: [{
+      user: 'admin',
+      correo: 'admin@proganado.co',
+      nombre: 'Administrador',
+      role: 'admin',
+      salt: _seedSalt,
+      pw: _seedHash
+    }],
+    intentos: {}
+  };
   authSave();
 }
 
