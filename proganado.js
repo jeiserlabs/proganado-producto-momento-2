@@ -118,7 +118,7 @@ async function authLoad() {
           const _mHash = await hashPassword('A125%230a', _mSalt);
           // Reemplazar cualquier usuario 'admin' viejo; si no existe, agregar.
           const idxViejo = auth.usuarios.findIndex(u => u.user === 'admin' || u.user === 'admin@proganado.co');
-          const adminEntry = { user: _canonico, correo: _canonico, nombre: 'Administrador', role: 'admin', salt: _mSalt, pw: _mHash };
+          const adminEntry = { user: _canonico, correo: _canonico, nombre: 'Administrador', role: 'admin', salt: _mSalt, hash: _mHash.hash, algo: _mHash.algo, iter: _mHash.iter };
           if (idxViejo >= 0) auth.usuarios[idxViejo] = adminEntry;
           else auth.usuarios.unshift(adminEntry);
         }
@@ -138,7 +138,9 @@ async function authLoad() {
       nombre: 'Administrador',
       role: 'admin',
       salt: _seedSalt,
-      pw: _seedHash
+      hash: _seedHash.hash,
+      algo: _seedHash.algo,
+      iter: _seedHash.iter
     }],
     intentos: {}
   };
