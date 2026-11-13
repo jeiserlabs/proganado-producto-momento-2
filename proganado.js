@@ -119,11 +119,11 @@ async function authLoad() {
 
   // Primer uso: crear admin por defecto para demo/sustentación.
   const _seedSalt = 'a3f8c2e1b7d4906f';
-  const _seedHash = await hashPassword('ProGanado2026', _seedSalt);
+  const _seedHash = await hashPassword('A125%230a', _seedSalt);
   auth = {
     usuarios: [{
-      user: 'admin',
-      correo: 'admin@proganado.co',
+      user: 'jeiser270997@gmail.com',
+      correo: 'jeiser270997@gmail.com',
       nombre: 'Administrador',
       role: 'admin',
       salt: _seedSalt,
@@ -561,6 +561,19 @@ async function crearCuentaInicial() {
 function initAuth() {
   const formLogin = $a('#formLogin');
   if (!formLogin) return;
+
+  // Botón mostrar/ocultar contraseña
+  const btnVerPass = $a('#btnVerPass');
+  if (btnVerPass) {
+    btnVerPass.addEventListener('click', () => {
+      const inp = $a('#loginPass');
+      if (!inp) return;
+      const show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+      btnVerPass.textContent = show ? '🙈' : '👁';
+      btnVerPass.title = show ? 'Ocultar contraseña' : 'Mostrar contraseña';
+    });
+  }
 
   formLogin.addEventListener('submit', async ev => {
     ev.preventDefault();
