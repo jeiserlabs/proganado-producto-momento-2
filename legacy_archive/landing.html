@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProGanado — Control de Hato</title>
+  <meta name="description" content="ProGanado: trazabilidad, alertas de retiro ICA, inventario y reportes para fincas lecheras.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <style>
+    .landing-hero { padding: 4.5rem 0 3.5rem; }
+    .landing-hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.05; }
+    .feature-icon {
+      width: 52px; height: 52px; display: grid; place-items: center;
+      border-radius: 14px; font-size: 1.5rem;
+    }
+    .step-number {
+      width: 32px; height: 32px; display: grid; place-items: center;
+      border-radius: 50%; background: var(--pg-primary); color: #fff;
+      font-weight: 800; flex: 0 0 32px;
+    }
+    .code-card {
+      background: #0b291b; color: #d1e7dd; border-radius: 16px;
+      padding: 1.25rem; font-family: Consolas, monospace;
+      font-size: .85rem; overflow-x: auto;
+    }
+    .code-card pre { color: #d1e7dd; margin: 0; font-size: inherit; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark-emerald sticky-top shadow-sm" aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="landing.html">
+        <img src="assets/proganado-logo-blanco.png" alt="Logo ProGanado" height="38">
+        <span class="fw-bold">ProGanado</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#menuLanding" aria-controls="menuLanding"
+              aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuLanding">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#funciones">Funciones</a></li>
+          <li class="nav-item"><a class="nav-link" href="#datos">Datos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#equipo">Equipo</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-success px-3" href="index.html">Ingresar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="inicio" class="hero-wrapper landing-hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="badge bg-warning text-dark fw-bold mb-3">Proyecto Integrador CESDE · Momento 2</span>
+          <h1 class="display-4 fw-bold text-white mb-3">
+            Control total del hato, <span class="text-warning">blindado contra errores.</span>
+          </h1>
+          <p class="lead text-white-50 mb-4">
+            Trazabilidad, alertas de retiro ICA, inventario y reportes para fincas lecheras.
+            Una herramienta clara para decidir a tiempo.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="index.html" class="btn btn-success btn-lg px-4 shadow">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Ingresar al sistema
+            </a>
+            <a href="http://127.0.0.1:8000" target="_blank" rel="noopener" class="btn btn-outline-light btn-lg px-4">
+              <i class="bi bi-database me-2"></i>Abrir demo SQLite
+            </a>
+          </div>
+          <p class="small text-white-50 mt-2 mb-0">
+            La demo SQLite requiere ejecutar <code class="text-warning">servidor.py</code> en el computador.
+          </p>
+        </div>
+        <div class="col-lg-5">
+          <div class="hero-img-card position-relative">
+            <img src="assets/vaca-panel-inicio.avif" alt="Vaca lechera en pastoreo"
+                 class="img-fluid w-100" style="max-height: 360px; object-fit: cover;">
+            <div class="floating-badge">
+              <div class="d-flex justify-content-between align-items-center gap-2">
+                <span><i class="bi bi-droplet-fill text-info me-1"></i>Tanque frío</span>
+                <strong class="text-white">4.0 °C</strong>
+              </div>
+              <div class="d-flex justify-content-between align-items-center gap-2 mt-1">
+                <span><i class="bi bi-shield-check text-success me-1"></i>Meta inocuidad</span>
+                <strong class="text-success">100%</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-4 pt-3 border-top border-white-50">
+        <div class="col-6 col-lg-3"><div class="text-white fw-bold fs-4">116</div><div class="small text-white-50">Aretes de ejemplo</div></div>
+        <div class="col-6 col-lg-3"><div class="text-white fw-bold fs-4">0 L</div><div class="small text-white-50">Meta de contaminación</div></div>
+        <div class="col-6 col-lg-3"><div class="text-white fw-bold fs-4">100 d</div><div class="small text-white-50">Meta de días abiertos</div></div>
+        <div class="col-6 col-lg-3"><div class="text-white fw-bold fs-4">+80 COP</div><div class="small text-white-50">Bonificación UFC</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="funciones" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="text-success-emphasis fw-bold text-uppercase small">Funciones</span>
+          <h2 class="fw-bold mt-2">Lo esencial para una finca lechera</h2>
+          <p class="text-muted mx-auto" style="max-width: 640px;">Menos cuaderno, menos errores, más decisiones con datos.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-4">
+                <div class="feature-icon bg-danger-subtle text-danger-emphasis mb-3"><i class="bi bi-shield-x"></i></div>
+                <h3 class="h5 fw-bold">Cinta Roja</h3>
+                <p class="text-muted small mb-0">Bloquea la leche de una vaca en tratamiento hasta que termine el retiro del medicamento.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-4">
+                <div class="feature-icon bg-success-subtle text-success-emphasis mb-3"><i class="bi bi-upc-scan"></i></div>
+                <h3 class="h5 fw-bold">Trazabilidad</h3>
+                <p class="text-muted small mb-0">Cada bovino tiene arete, raza, peso, potrero e historial de eventos.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-4">
+                <div class="feature-icon bg-primary-subtle text-primary mb-3"><i class="bi bi-table"></i></div>
+                <h3 class="h5 fw-bold">Inventario y reportes</h3>
+                <p class="text-muted small mb-0">Consulta el hato, filtra por estado y exporta la información para tomar decisiones.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-4">
+                <div class="feature-icon bg-warning-subtle text-warning-emphasis mb-3"><i class="bi bi-capsule"></i></div>
+                <h3 class="h5 fw-bold">Sanidad y potreros</h3>
+                <p class="text-muted small mb-0">Agenda sanitaria, tratamientos activos y rotación de potreros en un solo lugar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="datos" class="py-5 bg-light border-top border-bottom">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <span class="text-success-emphasis fw-bold text-uppercase small">Datos demo</span>
+            <h2 class="fw-bold mt-2">Del formulario a SQLite, sin misterio</h2>
+            <p class="text-muted">
+              El formulario envía los datos por POST. Python los valida con consultas parametrizadas
+              y SQLite los guarda en un archivo local. Luego la página los vuelve a leer y los muestra
+              en una tabla.
+            </p>
+            <ol class="list-unstyled d-grid gap-3 mt-4">
+              <li class="d-flex gap-3">
+                <span class="step-number">1</span>
+                <div><strong>Escribes los datos</strong><div class="small text-muted">Arete, nombre, raza, peso y estado.</div></div>
+              </li>
+              <li class="d-flex gap-3">
+                <span class="step-number">2</span>
+                <div><strong>Python valida y guarda</strong><div class="small text-muted">Consulta parametrizada: sin concatenar SQL.</div></div>
+              </li>
+              <li class="d-flex gap-3">
+                <span class="step-number">3</span>
+                <div><strong>La tabla relee</strong><div class="small text-muted">SELECT, filtro por texto y por estado.</div></div>
+              </li>
+            </ol>
+            <a href="http://127.0.0.1:8000" target="_blank" rel="noopener" class="btn btn-success mt-3">
+              <i class="bi bi-database me-2"></i>Probar el módulo SQLite
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <div class="code-card shadow-lg">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-success small fw-bold">SQLite · schema</span>
+                <span class="badge bg-success">local</span>
+              </div>
+              <pre>CREATE TABLE bovinos (
+  id INTEGER PRIMARY KEY,
+  arete TEXT UNIQUE NOT NULL,
+  nombre TEXT NOT NULL,
+  raza TEXT NOT NULL,
+  peso_kg REAL NOT NULL,
+  estado TEXT NOT NULL
+);</pre>
+            </div>
+            <p class="small text-muted mt-3 mb-0">
+              La demo no guarda contraseñas ni datos personales: solo registros de bovinos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="equipo" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="text-success-emphasis fw-bold text-uppercase small">Equipo</span>
+          <h2 class="fw-bold mt-2">Grupo 3 · CESDE 2026-2</h2>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-sm-6 col-lg-3"><div class="card border-0 shadow-sm rounded-4 h-100"><div class="card-body p-4"><h3 class="h6 fw-bold mb-1">Jeiser Gutiérrez</h3><p class="small text-muted mb-0">Tech Lead · Base de Datos</p></div></div></div>
+          <div class="col-sm-6 col-lg-3"><div class="card border-0 shadow-sm rounded-4 h-100"><div class="card-body p-4"><h3 class="h6 fw-bold mb-1">Sebastián</h3><p class="small text-muted mb-0">Frontend · Bootstrap</p></div></div></div>
+          <div class="col-sm-6 col-lg-3"><div class="card border-0 shadow-sm rounded-4 h-100"><div class="card-body p-4"><h3 class="h6 fw-bold mb-1">Emilio Villanueva</h3><p class="small text-muted mb-0">Lógica · Prototipo IA</p></div></div></div>
+          <div class="col-sm-6 col-lg-3"><div class="card border-0 shadow-sm rounded-4 h-100"><div class="card-body p-4"><h3 class="h6 fw-bold mb-1">Héctor Pinto</h3><p class="small text-muted mb-0">Asesoría Veterinaria</p></div></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark-emerald text-white-50 py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-2 small">
+      <span>ProGanado S.A.S. © 2026 · Escuela de Nuevas Tecnologías CESDE</span>
+      <span>Docente: Jonathan Felipe Piedrahita Nieto · Aula 406</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
