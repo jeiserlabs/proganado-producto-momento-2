@@ -122,6 +122,19 @@ async function authLoad() {
           if (idxViejo >= 0) auth.usuarios[idxViejo] = adminEntry;
           else auth.usuarios.unshift(adminEntry);
         }
+        // Cuenta demo de la sustentación (mismos permisos, contraseña propia)
+        if (!auth.usuarios.some(u => u.user === 'user@gmail.com')) {
+          auth.usuarios.push({
+            user: 'user@gmail.com',
+            correo: 'user@gmail.com',
+            nombre: 'Demo CESDE',
+            role: 'admin',
+            salt: '7b3e9c0a5d14f2ab8c6e190d3a7f4b52',
+            hash: '356afb0f40f239e33c4d2bdae3ee394319ae79ffbdb80da5dc9d56ce8f31cc71',
+            algo: 'pbkdf2',
+            iter: 150000
+          });
+        }
         authSave();
         return;
       }
@@ -141,6 +154,15 @@ async function authLoad() {
       hash: _seedHash.hash,
       algo: _seedHash.algo,
       iter: _seedHash.iter
+    }, {
+      user: 'user@gmail.com',
+      correo: 'user@gmail.com',
+      nombre: 'Demo CESDE',
+      role: 'admin',
+      salt: '7b3e9c0a5d14f2ab8c6e190d3a7f4b52',
+      hash: '356afb0f40f239e33c4d2bdae3ee394319ae79ffbdb80da5dc9d56ce8f31cc71',
+      algo: 'pbkdf2',
+      iter: 150000
     }],
     intentos: {}
   };
